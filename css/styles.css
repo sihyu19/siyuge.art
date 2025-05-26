@@ -1,3 +1,5 @@
+/* Fonts are loaded via Adobe Fonts/Typekit in the HTML */
+
 body {
   cursor: none;
   background-color: #FDFFFC;
@@ -5,6 +7,13 @@ body {
   padding: 40px;
   font-family: arboria, sans-serif;
   overflow-x: hidden;
+}
+
+/* Only adjust padding on very large screens */
+@media (min-width: 1800px) {
+  body {
+    padding: clamp(40px, 4vw, 60px);
+  }
 }
 
 @keyframes moveBlob {
@@ -123,6 +132,41 @@ nav {
   z-index: 90;
 }
 
+/* Only apply responsive changes to screens LARGER than typical laptops */
+@media (min-width: 1600px) {
+  .content-wrapper {
+    max-width: 1400px;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+  }
+  
+  .text-column {
+    max-width: 600px;
+  }
+  
+  .name-title {
+    right: 8%;
+    top: 38%;
+  }
+}
+
+@media (min-width: 1800px) {
+  .content-wrapper {
+    max-width: 1500px;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+  }
+  
+  .text-column {
+    max-width: 650px;
+  }
+  
+  .name-title {
+    right: 10%;
+    top: 40%;
+  }
+}
+
 .header-container {
   perspective: 1000px;
 }
@@ -130,10 +174,17 @@ nav {
 h1 {
   font-size: 10em;
   color: #0C120C;
-  font-family: Forma DJR Display, sans-serif;
+  font-family: "Forma DJR Display", sans-serif;
   margin: 0;
   line-height: 0.9;
   transition: transform 0.1s;
+}
+
+/* Only scale title on very large screens */
+@media (min-width: 1800px) {
+  h1 {
+    font-size: clamp(8em, 9vw, 12em);
+  }
 }
 
 p {
@@ -357,6 +408,15 @@ p {
   width: 500px;
   height: 500px;
   z-index: 10;
+}
+
+/* Only adjust Lottie positioning on very large screens */
+@media (min-width: 1800px) {
+  .services-hero-lottie {
+    right: 12%;
+    width: clamp(400px, 25vw, 600px);
+    height: clamp(400px, 25vw, 600px);
+  }
 }
 
 .services-arrow-lottie:hover {
