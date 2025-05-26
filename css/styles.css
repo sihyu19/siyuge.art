@@ -299,21 +299,195 @@ p {
   height: auto;
 }
 
-@media (max-width: 1200px) {
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  .text-column {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .name-title {
+    position: relative;
+    top: auto;
+    right: auto;
+    text-align: left;
+    order: 1;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    font-size: 4em;
+    line-height: 0.8;
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  nav {
+    bottom: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    gap: 15px;
+  }
+
+  .nav-button {
+    font-size: 0.9em;
+  }
+
+  .background-blob {
+    width: 300px;
+    height: 300px;
+    top: 30%;
+    left: 60%;
+  }
+
+  .services-hero-lottie {
+    width: 200px;
+    height: 200px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .services-arrow-lottie {
+    width: 40px;
+    height: 60px;
+    bottom: 30px;
+  }
+
+  /* Project sections mobile */
+  .projects-container {
+    padding: 0 5px;
+  }
+
+  .project-wrapper {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .project-info {
+    position: static;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .project-title {
+    font-size: 1.3em;
+  }
+
+  .project-location {
+    font-size: 0.85em;
+  }
+
+  .project-description {
+    font-size: 0.85em;
+    line-height: 1.5;
+  }
+
+  .project-images-grid {
+    column-count: 4;
+    column-gap: 8px;
+  }
+
+  .project-images-grid img,
+  .project-images-grid video {
+    width: 100%;
+    margin-bottom: 8px;
+    border-radius: 2px;
+  }
+
+  .single-project-image img,
+  .single-project-image video {
+    width: 100%;
+  }
+
+  .my-work-image {
+    margin-top: 100px;
+    padding-bottom: 50px;
+  }
+
+  /* Index panel mobile */
+  .index-panel {
+    width: 280px;
+    padding: 30px;
+  }
+
+  .index-panel h4 {
+    margin-top: 15px;
+  }
+
+  .project-item h4 {
+    margin-left: 20px;
+    font-size: 0.9em;
+  }
+
+  /* Banner mobile */
+  .scrolling-text {
+    font-size: 60px;
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 700px;
+    padding-top: 100px;
+  }
+
+  .text-column {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .name-title {
+    position: relative;
+    top: auto;
+    right: auto;
+    text-align: left;
+    order: 1;
+    margin-bottom: 40px;
+  }
+
+  h1 {
+    font-size: 6em;
+  }
+
+  .background-blob {
+    width: 400px;
+    height: 400px;
+    top: 40%;
+    left: 65%;
+  }
+
+  .services-hero-lottie {
+    width: 300px;
+    height: 300px;
+    right: 50px;
+  }
+
+  .project-wrapper {
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+  }
+
   .project-images-grid {
     column-count: 3;
-  }
-}
-
-@media (max-width: 900px) {
-  .project-images-grid {
-    column-count: 2;
-  }
-}
-
-@media (max-width: 600px) {
-  .project-images-grid {
-    column-count: 1;
+    column-gap: 12px;
   }
 }
 
