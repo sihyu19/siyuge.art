@@ -535,6 +535,8 @@ p {
   transform: translateX(-100%);
   z-index: 40;
   padding: 40px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 3px 0 20px rgba(0, 0, 0, 0.05);
 }
 
 .index-panel.open {
