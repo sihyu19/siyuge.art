@@ -30,6 +30,72 @@ function openShiftBrand(){
   window.open('https://drive.google.com/file/d/1vynp9f_Jv0CBA5Il71hTPoxmoxte2Ns9/view?usp=sharing', '_blank');
 }
 
+// SVG Animation Functions
+const svg = {
+  createDrawable: function(selector) {
+    const elements = document.querySelectorAll(selector);
+    return Array.from(elements).map(el => {
+      return new Proxy(el, {
+        set(target, prop, value) {
+          if (prop === 'draw') {
+            const [start, end] = value.split(' ').map(Number);
+            const length = target.getTotalLength();
+            const startLength = length * start;
+            const endLength = length * end;
+            const dashLength = endLength - startLength;
+            
+            target.style.strokeDasharray = dashLength + ' ' + length;
+            target.style.strokeDashoffset = length - endLength;
+          } else {
+            target[prop] = value;
+          }
+          return true;
+        },
+        get(target, prop) {
+          return target[prop];
+        }
+      });
+    });
+  }
+};
+
+let currentAnimation = null;
+
+function animateSVG() {
+  const [drawable] = svg.createDrawable('.animated-line');
+  
+  // Reset
+  drawable.draw = '0 0';
+  
+  // Cancel any existing animation
+  if (currentAnimation) {
+    cancelAnimationFrame(currentAnimation);
+  }
+  
+  // Manual animation
+  let progress = 0;
+  const duration = 5000; // 5 seconds - nice and slow
+  const startTime = Date.now();
+  
+  function animate() {
+    const elapsed = Date.now() - startTime;
+    progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function (easeInOutQuad)
+    const eased = progress < 0.5 
+      ? 2 * progress * progress 
+      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+    
+    drawable.draw = `0 ${eased}`;
+    
+    if (progress < 1) {
+      currentAnimation = requestAnimationFrame(animate);
+    }
+  }
+  
+  animate();
+}
+
 // Header 3D effect
 const header = document.querySelector('h1');
 const headerContainer = document.querySelector('.header-container');
@@ -78,6 +144,20 @@ const scrollToProject = (id) => {
   }
 };
 
+// Intersection Observer for SVG animation trigger
+const observerOptions = {
+  threshold: 0.5,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.target.classList.contains('my-work-svg')) {
+      animateSVG();
+    }
+  });
+}, observerOptions);
+
 // Lottie animations
 document.addEventListener('DOMContentLoaded', () => {
   const heroLottieElement = document.querySelector('.services-hero-lottie');
@@ -125,4 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // Set up intersection observer for SVG animation
+  const svgContainer = document.querySelector('.my-work-svg');
+  if (svgContainer) {
+    observer.observe(svgContainer);
+  }
 });
