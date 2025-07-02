@@ -295,13 +295,19 @@ p {
   grid-column: auto;
 }
 
-.project-images-grid img {
+.project-images-grid img,
+.project-images-grid > div {
   width: 260px;
   height: auto;
   border-radius: 4px;
   display: block;
   margin-bottom: 16px;
   break-inside: avoid;
+  overflow: hidden;
+}
+
+.project-images-grid iframe {
+  border-radius: 4px;
 }
 
 .project-images-grid video {
