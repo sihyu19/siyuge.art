@@ -1,3 +1,58 @@
+// Loading screen code (keep this at the top)
+const loadingImages = [
+  'https://i.postimg.cc/W4SX88dF/circle-ring.png',
+  'https://i.imghippo.com/files/toX4607i.png',
+  'https://i.postimg.cc/MTFt2Gbz/dimi.png',
+  'https://i.postimg.cc/90wbWjJZ/glass-bowl.png',
+  'https://i.postimg.cc/jCVX2kF9/phish.png',
+  'https://i.imghippo.com/files/zENb5941sA.png',
+  'https://i.postimg.cc/ydL67Mk1/misc-jewelry.png',
+  'https://i.postimg.cc/Yq68G9Rv/IMG-5478.jpg',
+  'https://i.postimg.cc/RhPmzKpN/1.png',
+  'https://i.postimg.cc/XNx4F6N4/2.png',
+  'https://i.postimg.cc/FRRGBSSP/nest-earrings.png'
+];
+
+let currentImageIndex = 0;
+let loadingComplete = false;
+
+function initializeLoading() {
+  document.body.classList.add('loading');
+  
+  const loadingImage = document.getElementById('loadingImage');
+  const loadingCounter = document.getElementById('loadingCounter');
+  const loadingScreen = document.getElementById('loadingScreen');
+  
+  loadingImage.src = loadingImages[0];
+  
+  // Counter animation (1-100 over 4 seconds)
+  let counter = 1;
+  const counterInterval = setInterval(() => {
+    counter++;
+    loadingCounter.textContent = counter;
+    if (counter >= 100) {
+      clearInterval(counterInterval);
+    }
+  }, 40);
+  
+  const imageInterval = setInterval(() => {
+    currentImageIndex = (currentImageIndex + 1) % loadingImages.length;
+    loadingImage.src = loadingImages[currentImageIndex];
+  }, 400);
+  
+  setTimeout(() => {
+    clearInterval(imageInterval);
+    loadingScreen.classList.add('slide-up');
+    document.body.classList.remove('loading');
+    
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+      loadingComplete = true;
+    }, 800);
+  }, 4000);
+}
+
+// MOVE ALL BUTTON FUNCTIONS HERE (OUTSIDE OF DOMContentLoaded)
 function openBento() {
   window.open('https://bento.me/siyuge', '_blank');
 }
@@ -11,7 +66,7 @@ function openShiftCreator() {
 }
 
 function openProMo() {
-  window.open('https://www.instagram.com/product.motion?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', 'blank');
+  window.open('https://www.instagram.com/product.motion?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', '_blank');
 }
 
 function openATD() {
@@ -29,6 +84,22 @@ function openCSS() {
 function openShiftBrand(){
   window.open('https://drive.google.com/file/d/1vynp9f_Jv0CBA5Il71hTPoxmoxte2Ns9/view?usp=sharing', '_blank');
 }
+
+// Index panel functionality
+const toggleIndexPanel = () => {
+  const panel = document.getElementById('indexPanel');
+  panel.classList.toggle('open');
+};
+
+const scrollToProject = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth'
+    });
+    toggleIndexPanel();
+  }
+};
 
 // SVG Animation Functions
 const svg = {
@@ -64,24 +135,20 @@ let currentAnimation = null;
 function animateSVG() {
   const [drawable] = svg.createDrawable('.animated-line');
   
-  // Reset
   drawable.draw = '0 0';
   
-  // Cancel any existing animation
   if (currentAnimation) {
     cancelAnimationFrame(currentAnimation);
   }
   
-  // Manual animation
   let progress = 0;
-  const duration = 5000; // 5 seconds - nice and slow
+  const duration = 5000;
   const startTime = Date.now();
   
   function animate() {
     const elapsed = Date.now() - startTime;
     progress = Math.min(elapsed / duration, 1);
     
-    // Easing function (easeInOutQuad)
     const eased = progress < 0.5 
       ? 2 * progress * progress 
       : 1 - Math.pow(-2 * progress + 2, 2) / 2;
@@ -96,70 +163,10 @@ function animateSVG() {
   animate();
 }
 
-// Header 3D effect
-const header = document.querySelector('h1');
-const headerContainer = document.querySelector('.header-container');
-let rect = headerContainer.getBoundingClientRect();
-
-headerContainer.addEventListener('mousemove', (e) => {
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
-  const percentX = (mouseX - centerX) / centerX;
-  const percentY = (mouseY - centerY) / centerY;
-  const twistX = percentY * 20;
-  const twistY = percentX * 20;
-  header.style.transform = `rotateX(${-twistX}deg) rotateY(${twistY}deg)`;
-});
-
-headerContainer.addEventListener('mouseleave', () => {
-  header.style.transform = 'none';
-});
-
-window.addEventListener('resize', () => {
-  rect = headerContainer.getBoundingClientRect();
-});
-
-// Custom cursor
-const dot = document.getElementById('dot');
-document.addEventListener('mousemove', (e) => {
-  dot.style.left = `${e.clientX}px`;
-  dot.style.top = `${e.clientY}px`;
-});
-
-// Index panel functionality
-const toggleIndexPanel = () => {
-  const panel = document.getElementById('indexPanel');
-  panel.classList.toggle('open');
-};
-
-const scrollToProject = (id) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({
-      behavior: 'smooth'
-    });
-    toggleIndexPanel();
-  }
-};
-
-// Intersection Observer for SVG animation trigger
-const observerOptions = {
-  threshold: 0.5,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && entry.target.classList.contains('my-work-svg')) {
-      animateSVG();
-    }
-  });
-}, observerOptions);
-
-// Lottie animations
+// DOMContentLoaded - KEEP ONLY INITIALIZATION CODE HERE
 document.addEventListener('DOMContentLoaded', () => {
+  initializeLoading();
+  
   const heroLottieElement = document.querySelector('.services-hero-lottie');
   const heroAnimation = lottie.loadAnimation({
     container: heroLottieElement,
@@ -169,16 +176,60 @@ document.addEventListener('DOMContentLoaded', () => {
     path: 'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json'
   });
 
+  // Header 3D effect
+  const header = document.querySelector('h1');
+  const headerContainer = document.querySelector('.header-container');
+  let rect = headerContainer.getBoundingClientRect();
+
+  headerContainer.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const percentX = (mouseX - centerX) / centerX;
+    const percentY = (mouseY - centerY) / centerY;
+    const twistX = percentY * 20;
+    const twistY = percentX * 20;
+    header.style.transform = `rotateX(${-twistX}deg) rotateY(${twistY}deg)`;
+  });
+
+  headerContainer.addEventListener('mouseleave', () => {
+    header.style.transform = 'none';
+  });
+
+  window.addEventListener('resize', () => {
+    rect = headerContainer.getBoundingClientRect();
+  });
+
+  // Custom cursor
+  const dot = document.getElementById('dot');
+  document.addEventListener('mousemove', (e) => {
+    dot.style.left = `${e.clientX}px`;
+    dot.style.top = `${e.clientY}px`;
+  });
+
+  // Intersection Observer for SVG animation trigger
+  const observerOptions = {
+    threshold: 0.5,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.target.classList.contains('my-work-svg')) {
+        animateSVG();
+      }
+    });
+  }, observerOptions);
+
   // Modify the color of stars to yellow after animation loads
   heroAnimation.addEventListener('DOMLoaded', () => {
     const svgElement = heroLottieElement.querySelector('svg');
     if (svgElement) {
       const paths = svgElement.querySelectorAll('path');
       paths.forEach(path => {
-        // Change stroke color to yellow
         path.setAttribute('stroke', '#f3a5a5');
         
-        // If there's a fill color (like the star), change it to yellow
         if (path.getAttribute('fill')) {
           path.setAttribute('fill', '#f3a5a5');
         }
@@ -195,7 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
     path: 'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json'
   });
 
-  // Modify the color after animation loads
   animation.addEventListener('DOMLoaded', () => {
     const svgElement = arrowElement.querySelector('svg');
     if (svgElement) {
@@ -206,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Set up intersection observer for SVG animation
   const svgContainer = document.querySelector('.my-work-svg');
   if (svgContainer) {
     observer.observe(svgContainer);

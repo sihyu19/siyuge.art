@@ -1,5 +1,3 @@
-/* Fonts are loaded via Adobe Fonts/Typekit in the HTML */
-
 body {
   cursor: none;
   background-color: #FDFFFC;
@@ -9,7 +7,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Only adjust padding on very large screens */
+
 @media (min-width: 1800px) {
   body {
     padding: clamp(40px, 4vw, 60px);
@@ -132,7 +130,6 @@ nav {
   z-index: 90;
 }
 
-/* Only apply responsive changes to screens LARGER than typical laptops */
 @media (min-width: 1600px) {
   .content-wrapper {
     max-width: 1400px;
@@ -180,7 +177,6 @@ h1 {
   transition: transform 0.1s;
 }
 
-/* Only scale title on very large screens */
 @media (min-width: 1800px) {
   h1 {
     font-size: clamp(8em, 9vw, 12em);
@@ -206,7 +202,6 @@ p {
   transform: translate(-50%, -50%);
 }
 
-/* Animated SVG styles replacing my-work-image */
 .my-work-svg {
   width: 100%;
   height: auto;
@@ -475,7 +470,6 @@ p {
   }
 }
 
-/* Tablet adjustments */
 @media (max-width: 1024px) and (min-width: 769px) {
   .content-wrapper {
     grid-template-columns: 1fr;
@@ -626,7 +620,6 @@ p {
   z-index: 10;
 }
 
-/* Only adjust Lottie positioning on very large screens */
 @media (min-width: 1800px) {
   .services-hero-lottie {
     right: 12%;
@@ -637,4 +630,121 @@ p {
 
 .services-arrow-lottie:hover {
   opacity: 1;
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FDFFFC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: transform 0.8s ease-in-out;
+}
+
+.loading-screen.slide-up {
+  transform: translateY(-100%);
+}
+
+.picture-frame {
+  position: relative;
+  width: 250px;
+  height: auto;
+  overflow: visible;
+}
+
+.picture-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.loading-counter {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  color: #0C120C;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: arboria, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  min-width: 40px;
+  text-align: center;
+}
+
+.loading-text {
+  position: absolute;
+  top: -40px;
+  left: -10px;
+  color: #0C120C;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-family: arboria, sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .picture-frame {
+    width: 280px;
+    height: 210px;
+    border-width: 6px;
+  }
+  
+  .loading-counter {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    top: -45px;
+  }
+  
+  .loading-text {
+    font-size: 1.1em;
+    padding: 8px 12px;
+    top: -45px;
+  }
+}
+
+/* Hide main content initially */
+body.loading nav,
+body.loading .hero-section,
+body.loading .services-arrow-lottie,
+body.loading .my-work-svg,
+body.loading .projects-section,
+body.loading .banner-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Show main content after loading */
+body:not(.loading) nav,
+body:not(.loading) .hero-section,
+body:not(.loading) .services-arrow-lottie,
+body:not(.loading) .my-work-svg,
+body:not(.loading) .projects-section,
+body:not(.loading) .banner-container {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s ease 0.3s;
+}
+
+/* Mobile adjustments for loading screen */
+@media (max-width: 768px) {
+  .picture-frame {
+    width: 280px;
+    height: 210px;
+    border-width: 6px;
+  }
+  
+  .loading-counter {
+    font-size: 1em;
+    padding: 6px 10px;
+  }
 }
