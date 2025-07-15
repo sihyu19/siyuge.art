@@ -249,7 +249,7 @@ p {
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 40px;
-  margin-bottom: 120px;
+  margin-bottom: 150px;
 }
 
 .project-info {
@@ -258,6 +258,7 @@ p {
   height: fit-content;
   width: 100%;
   padding-right: 20px;
+  overflow: hidden;
 }
 
 .project-title {
