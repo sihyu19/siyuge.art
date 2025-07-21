@@ -58,7 +58,7 @@ function openBento() {
 }
 
 function openResume() {
-  window.open('https://drive.google.com/file/d/1VnPI4HZIFEqWAPJ37KREVDFbRZKO53g6/view?usp=sharing', '_blank');
+  window.open('https://drive.google.com/file/d/1tQCro1kNr5WpdjznQuV_uc7oUeFMbZm4/view?usp=sharing', '_blank');
 }
 
 function openShiftCreator() {
