@@ -1,16 +1,11 @@
 // Loading screen code (keep this at the top)
 const loadingImages = [
   'https://i.postimg.cc/W4SX88dF/circle-ring.png',
-  'https://i.imghippo.com/files/toX4607i.png',
   'https://i.postimg.cc/MTFt2Gbz/dimi.png',
   'https://i.postimg.cc/90wbWjJZ/glass-bowl.png',
   'https://i.postimg.cc/jCVX2kF9/phish.png',
-  'https://i.imghippo.com/files/zENb5941sA.png',
-  'https://i.postimg.cc/ydL67Mk1/misc-jewelry.png',
-  'https://i.postimg.cc/Yq68G9Rv/IMG-5478.jpg',
   'https://i.postimg.cc/RhPmzKpN/1.png',
   'https://i.postimg.cc/XNx4F6N4/2.png',
-  'https://i.postimg.cc/FRRGBSSP/nest-earrings.png'
 ];
 
 let currentImageIndex = 0;
@@ -33,12 +28,12 @@ function initializeLoading() {
     if (counter >= 100) {
       clearInterval(counterInterval);
     }
-  }, 40);
+  }, 20);
   
   const imageInterval = setInterval(() => {
     currentImageIndex = (currentImageIndex + 1) % loadingImages.length;
     loadingImage.src = loadingImages[currentImageIndex];
-  }, 400);
+  }, 200);
   
   setTimeout(() => {
     clearInterval(imageInterval);
@@ -49,7 +44,7 @@ function initializeLoading() {
       loadingScreen.style.display = 'none';
       loadingComplete = true;
     }, 800);
-  }, 4000);
+  }, 2500);
 }
 
 // MOVE ALL BUTTON FUNCTIONS HERE (OUTSIDE OF DOMContentLoaded)
@@ -73,8 +68,8 @@ function openATD() {
   window.open('https://alphathetadeltaumich.org/', '_blank');
 }
 
-function openRoots() {
-  window.open('https://www.rootsapp.org/', '_blank');
+function openAGS() {
+  window.open('https://www.agslogistics.com/', '_blank');
 }
 
 function openCSS() {
@@ -83,6 +78,10 @@ function openCSS() {
 
 function openShiftBrand(){
   window.open('https://drive.google.com/file/d/1vynp9f_Jv0CBA5Il71hTPoxmoxte2Ns9/view?usp=sharing', '_blank');
+}
+
+function openMedium(){
+  window.open('https://medium.com/@siyuge', '_blank');
 }
 
 // Index panel functionality

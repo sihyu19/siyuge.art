@@ -8,22 +8,22 @@
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/jvh5qmh.css">
-  
+
   <!-- Lottie -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
-  
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-<div id="loadingScreen" class="loading-screen">
-  <div class="picture-frame">
-    <img id="loadingImage" src="" alt="Loading">
-    <div id="loadingText" class="loading-text">Siyu Ge</div>
-    <div id="loadingCounter" class="loading-counter">1</div>
+  <div id="loadingScreen" class="loading-screen">
+    <div class="picture-frame">
+      <img id="loadingImage" src="" alt="Loading">
+      <div id="loadingText" class="loading-text">Siyu Ge</div>
+      <div id="loadingCounter" class="loading-counter">1</div>
+    </div>
   </div>
-</div>
   <nav>
     <button class="nav-button" onclick="toggleIndexPanel()">Index</button>
     <button class="nav-button" onclick="openBento()">Bento</button>
@@ -32,44 +32,166 @@
 
   <div class="hero-section">
     <div class="background-blob"></div>
-    
-    <div class="services-hero-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324606" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="3.3333333333333335" data-duration="0">
+
+    <div class="services-hero-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324606" data-animation-type="lottie"
+      data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json"
+      data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
+      data-default-duration="3.3333333333333335" data-duration="0">
     </div>
-    
+
     <div class="name-title header-container">
       <h1>Hi,<br>this is<br>Siyu :)</h1>
     </div>
     <div class="content-wrapper">
       <div class="text-column">
-        <p>I am a second year @UofM studying architecture and cognitive science.</p>
-        <p>I design graphics, brands, and buildings. I love making cool stuff. Outside of studios, you will see me painting, making jewelry, or just making a creative mess wherever I can. </p>
-        <p>On campus, I am the co-director of <button class="link-button" onclick="openShiftCreator()">Shift Creator Space</button>, a community of hackers, designers, and artists to work on their passion projects. At the moment, I also design stuff for <button class="link-button" onclick="openATD()">Alpha Theta Delta</button>, make graphics for <button class="link-button" onclick="openRoots()">Roots</button>, and help tell stories for <button class="link-button" onclick="openCSS()">Center For Social Solutions</button>. </p>
-        <p>Feel free to shoot me a note at siyuge@umich.edu. I'd love to hear what you're making.</p>
+        <p>I am a third year @UofM studying Architecture and Cognitive Science.</p>
+        <p>I design graphics, brands, and buildings. I love making things that are a little silly and a lot of fun.
+          Outside of studios, you will find me painting, designing jewelry, or just making a creative mess wherever I
+          can. </p>
+        <p>On campus, I am the co-director of <button class="link-button" onclick="openShiftCreator()">Shift Creator
+            Space</button>, a community of hackers, designers, and artists working on their passion projects. At the
+          moment, I'm also making branding for <button class="link-button" onclick="openAGS()">Accelerated Global
+            Solutions</button>, and helping to tell stories for
+          <button class="link-button" onclick="openCSS()">Center For Social Solutions</button>.
+        </p>
+        <p>If you want to see where my head’s at lately, you can read some of my thoughts <button class="link-button"
+            onclick="openMedium()">here</button>.
+          Feel free to reach out at siyuge@umich.edu. I'd love to hear what you're making.</p>
       </div>
     </div>
   </div>
-  
-  <div class="services-arrow-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324605" data-animation-type="lottie" data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="2.033333333333333" data-duration="0">
+
+  <div class="services-arrow-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324605" data-animation-type="lottie"
+    data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json"
+    data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
+    data-default-duration="2.033333333333333" data-duration="0">
   </div>
-  
+
   <div class="my-work-svg">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 3 250 48">
-      <!-- Background outline - always visible and faint -->
-      <path class="background-line" d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z"/>
-    
-      <path class="animated-line" d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z"/>
+      <path class="background-line"
+        d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z" />
+
+      <path class="animated-line"
+        d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z" />
     </svg>
   </div>
 
   <div class="projects-section">
     <div class="projects-container">
 
+      <!-- Project 1 -->
+      <div id="shift" class="project-wrapper">
+        <div class="project-info">
+          <h3 class="project-title">Shift Creator Space</h3>
+          <p class="project-location">Brand Identity, Social Media, Print Assets, 2024-2025</p>
+          <p class="project-description">Shift Creator Space is a 50 people community of designers, hackers,
+            entrepreneurs, and makers driven by the common mission to build dope stuff outside of the classroom. As
+            Co-Director, my journey with this community has shaped both my design philosophy and understanding of
+            creative transformation. </p>
+          <p class="project-description"> Witnessing firsthand how this club elevates passionate students, I designed a
+            brand identity that captures this metamorphic experience—from hesitant newcomers to confident creators. The
+            vibrant color palette reflects the energy of our community. Each poster, social media template, and
+            merchandise item I designed tells part of our collective story—whether it's the late-night FISI jam
+            sessions, the speakeasy open mics, or creator showcases.</p>
+          <p class="project-description"> I also developed a <button class="link-button"
+              onclick="openShiftBrand()">Brand Identity Guideline</button> for Shift.
+        </div>
+        <div class="project-images-grid">
+          <img src="https://i.postimg.cc/8CBWm2gz/diag-poster.jpg" alt="Diag poster">
+          <img src="https://i.postimg.cc/WbCMNm7T/SHIFT-sunday-poster.png" alt="Shift Sunday">
+          <img src="https://i.postimg.cc/ThM752kC/open-fisi-poster.png" alt="Open FISI poster">
+          <img src="assets/showcase 2025.png" alt="showcase">
+          <img src="assets/f25 shift diag board wooden letters (1).jpg" alt="Diag poster">
+          <img src="assets/f25 shift recruit diag board balloon.jpg" alt="Diag poster">
+          <img src="https://i.postimg.cc/52z86HPv/fisi-coffee-bar-poster.png" alt="fisi + coffee bar">
+          <img src="assets/open fisi 4.9.png" alt="open fisi">
+          <img src="https://i.postimg.cc/433hjBQC/shift-insta-mockup.png" alt="insta">
+          <img src="https://i.postimg.cc/63rvQ7Vc/flier-w25.png" alt="Flier1 front">
+          <img src="https://i.postimg.cc/tTQ6yd67/open-house-flyer1-2.png" alt="Flier1 back">
+          <img src="assets/speakeasy v2 poster.png" alt="speakeasy">
+          <img src="assets/f25 shift recruiting flier balloon texts.png" alt="Flier3 front">
+          <img src="assets/f25 shift recruiting flier balloon texts back.png" alt="Flier3 back">
+        </div>
+      </div>
+
+      <!-- Project 10 -->
+      <div id="adobe creative meetup" class="project-wrapper">
+        <div class="project-info">
+          <h3 class="project-title">Adobe Creative Meetup</h3>
+          <p class="project-location">Print Assets and Merch, 2025</p>
+          <p class="project-description">Adobe’s community program hosted a creative meetup at the University of
+            Michigan
+            to bring together designers and makers for an afternoon of connection and collaboration. I designed event
+            assets
+            including name tags, wristbands, and custom merch bags to create a cohesive and playful brand experience.
+          </p>
+        </div>
+        <div class="project-images-grid">
+          <img src="assets/nametag mockup.png" alt="nametag mockup">
+          <img src="assets/adobe nametag.png" alt="adobe nametag">
+          <img src="assets/wristband mockup.png" alt="adobe wristband">
+          <img src="assets/adobe bag mockup.png" alt="adobe paper bag">
+        </div>
+      </div>
+
+      <!-- Project 12 -->
+      <div id="shift merch" class="project-wrapper">
+        <div class="project-info">
+          <h3 class="project-title">Shift Merchandise Design</h3>
+          <p class="project-location">Merch, 2025</p>
+          <p class="project-description">A collection of sticker, mug, and apparel designs created for my club to
+            strengthen its visual identity and community spirit. Each piece was designed to feel playful, cohesive, and
+            true to the club’s creative personality.
+          </p>
+        </div>
+        <div class="project-images-grid">
+          <img src="assets/shift stickers.png" alt="stickers">
+          <img src="assets/mug mockup.png" alt="mug">
+          <img src="assets/mug pattern.png" alt="mug pattern">
+          <img src="assets/crewneck mockup.png" alt="shift crewneck">
+        </div>
+      </div>
+
+
+      <!-- Project 8 -->
+      <div id="blender" class="project-wrapper">
+        <div class="project-info">
+          <h3 class="project-title">Blender</h3>
+          <p class="project-location">Blender, 2025</p>
+          <p class="project-description">Teaching myself blender at the moment. Check back later to see more
+            progress...hopefully.</p>
+        </div>
+<div class="project-images-grid">
+          <img src="assets/coffee shop.gif" alt="coffee shop">
+          <img src="assets/donut.gif" alt="donuts">
+          <img src="assets/arcade.gif" alt="arcade">
+          <img src="assets/vinyl.gif" alt="vinyl">
+          <img src="assets/pink room final.png" alt="bedroom">
+          <img src="assets/cleanser.gif" alt="cleanser">
+          <img src="assets/drink.gif" alt="drink">
+          <img src="assets/cosmetic tube.gif" alt="cosmetic tube">
+          <img src="assets/ui button.gif" alt="ui button">
+          <img src="assets/peel off bottle.gif" alt="peel off bottle">
+          <img src="assets/hallway.gif" alt="hallway">
+        </div>
+      </div>
+
       <!-- Project 6 -->
       <div id="canopy" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Canopy Commons</h3>
-          <p class="project-location">Rhino 3D, Illustrator, Photoshop, 2025</p>
-          <p class="project-description">This coworking space design transforms the traditional workplace into a living forest sanctuary. Standing columns mimic tree trunks while planted vegetation brings nature indoors. Glass panels as walls flood the interior with natural light, creating a space that breathes and evolves throughout the day.</p> <p class="project-description">Inspired by Ishigami's celebrated Kanagawa Institute of Technology Workshop, the layout creates organic pathways between workstations while maintaining visual connection throughout the space. This arrangement fosters both collaboration and focus.</p> <p class="project-description"> In just a week, I designed this environment as a direct response to countless hours spent in poorly-lit, uninspiring libraries. This is a space that nurtures creativity through biophilic design principles and thoughtful spatial organization.</p>
+          <p class="project-location">Architecture, 2025</p>
+          <p class="project-description">This coworking space design transforms the traditional workplace into a living
+            forest sanctuary. Standing columns mimic tree trunks while planted vegetation brings nature indoors. Glass
+            panels as walls flood the interior with natural light, creating a space that breathes and evolves throughout
+            the day.</p>
+          <p class="project-description">Inspired by Ishigami's celebrated Kanagawa Institute of Technology Workshop,
+            the layout creates organic pathways between workstations while maintaining visual connection throughout the
+            space. This arrangement fosters both collaboration and focus.</p>
+          <p class="project-description"> In just a week, I designed this environment as a direct response to countless
+            hours spent in poorly-lit, uninspiring libraries. This is a space that nurtures creativity through biophilic
+            design principles and thoughtful spatial organization.</p>
         </div>
         <div class="single-project-image">
           <img src="https://i.postimg.cc/pXftSxzb/perspective.png" alt="canopy perspective">
@@ -78,45 +200,25 @@
           <img src="https://i.postimg.cc/VLQ845SW/elevation.png" alt="canopy elevation">
         </div>
       </div>
-      
+
       <!-- Project 5 -->
       <div id="state-st" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Shift: A Digital Memory</h3>
-          <p class="project-location">Rhino 3D, Illustrator, Photoshop, 2025</p>
-          <p class="project-description">This detailed 3D recreation captures the previous Shift Creator Space clubhouse that stood before making way for urban development. Working entirely from memory, I've reconstructed the vibrant communal areas where creativity flourished for over 5 years.</p> <p class="project-description">Every detail, from the characteristic red chairs to the skateboard in the stairwell, represents authentic moments from the hundreds of hours I spent nurturing this creative community as a co-director.</p> <p class="project-description">I completed this memorial project over the course of a weekend, translating intangible memories into a tangible 3D model that honors the space where hundreds of student creators found their voice. It is both a personal tribute and a historical document, preserving the spatial identity of a place that shaped the creative journey of countless students in their college life.</p>
+          <p class="project-location">Architecture, 2025</p>
+          <p class="project-description">This detailed 3D recreation captures the previous Shift Creator Space clubhouse
+            that stood before making way for urban development. Working entirely from memory, I've reconstructed the
+            vibrant communal areas where creativity flourished for over 5 years.</p>
+          <p class="project-description">Every detail, from the characteristic red chairs to the skateboard in the
+            stairwell, represents authentic moments from the hundreds of hours I spent nurturing this creative community
+            as a co-director.</p>
+          <p class="project-description">I completed this memorial project over the course of a weekend, translating
+            intangible memories into a tangible 3D model that honors the space where hundreds of student creators found
+            their voice. It is both a personal tribute and a historical document, preserving the spatial identity of a
+            place that shaped the creative journey of countless students in their college life.</p>
         </div>
         <div class="single-project-image">
           <img src="https://i.postimg.cc/MZr5MBZj/final.jpg" alt="old house">
-        </div>
-      </div>
-
-      <!-- Project 1 -->
-      <div id="shift" class="project-wrapper">
-        <div class="project-info">
-          <h3 class="project-title">Shift Creator Space</h3>
-          <p class="project-location">Graphic Design, Brand Identity, 2024-2025</p>
-          <p class="project-description">Shift Creator Space is a 50 people community of designers, hackers, entrepreneurs, and makers driven by the common mission to build dope stuff outside of the classroom. As Co-Director, my journey with this community has shaped both my design philosophy and understanding of creative transformation. </p> <p class="project-description"> Witnessing firsthand how this club elevates passionate students, I designed a brand identity that captures this metamorphic experience—from hesitant newcomers to confident creators. The vibrant color palette reflects the energy of our community. Each poster, social media template, and merchandise item I designed tells part of our collective story—whether it's the late-night FISI jam sessions, the speakeasy open mics, or creator showcases.</p> <p class = "project-description"> I also developed a <button class="link-button" onclick="openShiftBrand()">Brand Identity Guideline</button> for Shift. 
-        </div>
-        <div class="project-images-grid">
-          <img src="https://i.postimg.cc/8CBWm2gz/diag-poster.jpg" alt="Diag poster">
-          <img src="https://i.postimg.cc/WbCMNm7T/SHIFT-sunday-poster.png" alt="Shift Sunday">
-          <img src="https://i.postimg.cc/ThM752kC/open-fisi-poster.png" alt="Open FISI poster">
-          <img src="https://i.postimg.cc/PrwRgMrR/shift-branding-w25.png" alt="Colors">
-          <img src="https://i.imghippo.com/files/zhph2718SjE.png" alt="showcase">
-          <img src="https://i.postimg.cc/52z86HPv/fisi-coffee-bar-poster.png" alt="FISI new">
-          <img src="https://i.imghippo.com/files/zENb5941sA.png" alt="FISI + Late night coffee bar">
-          <img src="https://i.postimg.cc/C5mwNtsQ/sticker-pen-mockup.jpg" alt="stickers">
-          <img src="https://i.postimg.cc/433hjBQC/shift-insta-mockup.png" alt="insta">
-          <img src="https://i.postimg.cc/bdXxhkNx/carabiner-mockup.png" alt="Carabiner">
-          <img src="https://i.imghippo.com/files/lVR7733xqU.png" alt="Sweatshirt merch25">
-          <img src="https://i.postimg.cc/63rvQ7Vc/flier-w25.png" alt="Flier1 front">
-          <img src="https://i.postimg.cc/tTQ6yd67/open-house-flyer1-2.png" alt="Flier1 back">
-          <img src="https://i.imghippo.com/files/toX4607i.png" alt="speakeasy">
-          <img src="https://i.imghippo.com/files/VMH6781MwE.png" alt="mug merch25">
-          <img src="https://i.postimg.cc/d0XBCTyK/flyer2-1.png" alt="Flier2 front">
-          <img src="https://i.postimg.cc/GpBPbhSg/open-house-flyer2-2.png" alt="Flier2 back">
-          <img src="https://i.postimg.cc/rFmH7cs5/apps-due-tn.png" alt="Apps due w25k">
         </div>
       </div>
 
@@ -124,8 +226,14 @@
       <div id="illustrations" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Chromatic Memoirs</h3>
-          <p class="project-location">Digital, 2022-2025</p>
-          <p class="project-description">This collection represents more than mere portraits–-it's a living archive of the people who have shaped my journey. Through deliberate color choices and thoughtful lighting, I've sought to capture not just physical likenesses, but the essence of each individual's spirit and emotional landscape.Each face tells a story that intertwines with my own.</p> <p class="project-description">Art has always been my most authentic form of documentation. Where words fail, these images speak volumes about connection, intimacy, and the beautiful complexity of human relationships that have defined my path.</p>
+          <p class="project-location">Digital Art, 2022-2025</p>
+          <p class="project-description">This collection represents more than mere portraits–-it's a living archive of
+            the people who have shaped my journey. Through deliberate color choices and thoughtful lighting, I've sought
+            to capture not just physical likenesses, but the essence of each individual's spirit and emotional
+            landscape.Each face tells a story that intertwines with my own.</p>
+          <p class="project-description">Art has always been my most authentic form of documentation. Where words fail,
+            these images speak volumes about connection, intimacy, and the beautiful complexity of human relationships
+            that have defined my path.</p>
         </div>
         <div class="project-images-grid">
           <img src="https://i.postimg.cc/5yvgmNMk/IMG-0813.jpg" alt="Dimi">
@@ -145,30 +253,16 @@
       <div id="bedroom" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Bedroom Deconstructed</h3>
-          <p class="project-location">Rhinocero, Illustrator, 2024</p>
-          <p class="project-description">This project explores the analytical power of architectural drawing techniques applied to personal space. Working methodically over four weeks, I documented every architectural element and personal artifact, creating a series that bridges technical drafting with intimate spatial storytelling. I used different projection techniques to uncover distinct spatial truths about the same environment. This exercise sharpened my technical skills while developing a deeper appreciation for how drawing conventions shape our understanding of space.</p>
+          <p class="project-location">Architecture, 2024</p>
+          <p class="project-description">This project explores the analytical power of architectural drawing techniques
+            applied to personal space. Working methodically over three weeks, I documented every architectural element
+            and personal artifact, creating a series that bridges technical drafting with intimate spatial storytelling.
+            I used different projection techniques to uncover distinct spatial truths about the same environment. This
+            exercise sharpened my technical skills while developing a deeper appreciation for how drawing conventions
+            shape our understanding of space.</p>
         </div>
         <div class="single-project-image">
-          <img src="https://i.imghippo.com/files/CdkB5130oQ.png" alt="old house">
-        </div>
-      </div>
-      
-      <!-- Project 4 -->
-      <div id="study-model" class="project-wrapper">
-        <div class="project-info">
-          <h3 class="project-title">Negative Iterations</h3>
-          <p class="project-location">Rhinocero, Illustrator, Cardstock, 2024</p>
-          <p class="project-description">This series presents nine progressive study models exploring the relationship between solid and void. Beginning with digital designs in Rhino, I translated each iteration into physical form, creating a dialogue between virtual precision and material reality. The models investigate how negative space actively shapes our spatial understanding rather than functioning as mere background.</p> <p class="project-description">Each iteration builds upon the previous, refining my approach to carving, framing, and defining volumes through absence. I completed this project over seven weeks, developing specialized fabrication techniques to accurately translate digital geometries into physical models. This collection demonstrates both my conceptual evolution and growing technical proficiency in model-making.</p>
-        </div>
-        <div class="project-images-grid">
-          <img src="https://i.postimg.cc/Zn4zyx35/View-Capture20250117-181936.png" alt="portshit">
-          <img src="https://i.postimg.cc/W3xk7t8K/258-portshit2.png" alt="Physical">
-          <img src="https://i.postimg.cc/WzjNGJCX/View-Capture20250117-182916.png" alt="rhino2">
-          <img src="https://i.postimg.cc/T3TTBGH4/F2024-ARCH258-siyuge-05-D-Drawings.jpg" alt="05D">
-          <img src="https://i.postimg.cc/26njLxc1/View-Capture20250117-182705.png" alt="rhino1">
-          <img src="https://i.postimg.cc/pXCTBq28/View-Capture20250117-183709.png" alt="rhino4">
-          <img src="https://i.postimg.cc/bNprbKjp/View-Capture20250117-183304.png" alt="rhino3">
-          <img src="https://i.postimg.cc/gkVYMr4h/F2024-ARCH258-siyuge-07-D-Drawings.jpg" alt="07D">  
+          <img src="assets/923 state street.JPG" alt="old house">
         </div>
       </div>
 
@@ -176,8 +270,10 @@
       <div id="jewelry" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Jewelry Design</h3>
-          <p class="project-location">Sterling Silver, Copper, Mixed Metal, 2023-2024</p>
-          <p class="project-description">Jewelry pieces I made.</p>
+          <p class="project-location">Jewelry Design, 2023-2024</p>
+          <p class="project-description">A small collection of handmade jewelry pieces that merges craft and design.
+            From structured geometric pieces to organic crocheted silver wire forms, each explores how material and
+            process shape expression.</p>
         </div>
         <div class="project-images-grid">
           <img src="https://i.postimg.cc/R0MXrD7R/IMG-5852.jpg" alt="Grid">
@@ -190,45 +286,26 @@
           <img src="https://i.postimg.cc/Jz3P2Lk0/Screenshot-2024-12-09-at-12-37-52-AM.png" alt="Twist2">
         </div>
       </div>
-      
-      <!-- Project 8 -->
-      <div id="blender" class="project-wrapper">
-        <div class="project-info">
-          <h3 class="project-title">Blender</h3>
-          <p class="project-location">Blender, 2025</p>
-          <p class="project-description">Teaching myself blender at the moment. Check back later to see more progress...hopefully.</p>
-        </div>
-        <div class="project-images-grid">
-          <div style="padding-bottom:75%;position:relative;"><iframe src="https://giphy.com/embed/sjOcAWWL9Wul27O3or" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/aCNCVpCZKKBTchrZEx" width="100%" height="100%" style="position:absolute; pointer-events: none;border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:75%;position:relative;"><iframe src="https://giphy.com/embed/ynDXd26WXzG5LXXaRL" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/CirmRCSHXCmhL9Lkwr" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <img src="https://i.postimg.cc/9QyBwW4h/pink-room-final.png" alt="isometric-bedroom-pink">
-          <div style="padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/BYtaXJWqBAYW0MxxVk" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:67%;position:relative;"><iframe src="https://giphy.com/embed/nOZMDVnYJYwLelmpFh" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:133%;position:relative;"><iframe src="https://giphy.com/embed/eTrpg9QMA4o7FWKMEi" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/gCgDV26aIzPKqvZWHT" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:133%;position:relative;"><iframe src="https://giphy.com/embed/xgOVtzqX57RfGQIsR7" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-          <div style="padding-bottom:133%;position:relative;"><iframe src="https://giphy.com/embed/vI3HgkZGj9cvSMQyjO" width="100%" height="100%" style="position:absolute; pointer-events: none; border-radius: 4px;" frameBorder="0" class="giphy-embed"></iframe></div>
-        </div>
-      </div>
-      
+
       <!-- Project 9 -->
       <div id="misc-painting" class="project-wrapper">
         <div class="project-info">
-          <h3 class="project-title">Illustrations, Ceramics, and Other Media</h3>
+          <h3 class="project-title">From My Sketchbook</h3>
           <p class="project-location">Mixed Media, 2022-2025</p>
-          <p class="project-description">Misc Art I've made.</p>
+          <p class="project-description">A collection of personal projects and experiments from self-portraits and
+            sketches to stained glass and ceramics. These pieces are where I have fun, make a mess, and remind myself why I
+            love creating in the first place.</p>
         </div>
         <div class="project-images-grid">
           <img src="https://i.postimg.cc/nh6LyF81/IMG-2778.jpg" alt="Self-portrait">
           <img src="https://i.postimg.cc/90wbWjJZ/glass-bowl.png" alt="glass bowl">
           <img src="https://i.postimg.cc/fbLyZkf0/me-carrying-my-head.jpg" alt="me carrying my head">
           <img src="https://i.postimg.cc/9X11jJbL/stained-glass.png" alt="stained glass">
+          <img src="assets/jar w eyeball.JPG" alt="jar">
           <img src="https://i.postimg.cc/8PYkvpCV/Wechat-IMG1379.jpg" alt="Fish">
           <img src="https://i.postimg.cc/wMTRtFh0/IMG-3991.jpg" alt="holy">
           <img src="https://i.postimg.cc/0QvyNVyM/Screenshot-2024-12-09-at-12-30-25-AM.png" alt="Long Fall">
-          <img src="https://i.imghippo.com/files/BpAT9949uA.png" alt="building">
+          <img src="assets/building.png" alt="building">
           <img src="https://i.postimg.cc/zBrpqQ4c/IMG-2497.jpg" alt="ceramics plate">
           <img src="https://i.postimg.cc/3JR1rmbY/storm.png" alt="storm">
           <img src="https://i.postimg.cc/qqBL33Jc/IMG-2498.jpg" alt="jar front">
@@ -237,8 +314,8 @@
           <img src="https://i.postimg.cc/pr0BYLrw/IMG-2499.jpg" alt="jar2">
         </div>
       </div>
-      
-      
+
+
     </div>
   </div>
 
@@ -246,46 +323,46 @@
 
   <div id="indexPanel" class="index-panel">
     <div>
-      <h3 class="project-title">Projects</h3>
+      <h3 class="project-title">Design & Branding</h3>
+      <div class="project-item" onclick="scrollToProject('shift')">
+        <h4>Shift Creator Space</h4>
+      </div>
+      <div class="project-item" onclick="scrollToProject('adobe creative meetup')">
+        <h4>Adobe Creative Meetup</h4>
+      </div>
+      <div class="project-item" onclick="scrollToProject('shift merch')">
+        <h4>Shift Merchandise Design</h4>
+      </div>
+
+      <h3 class="project-title">Independent & Art Projects</h3>
       <h4>2025</h4>
-       <div class="project-item" onclick="scrollToProject('canopy')">
+      <div class="project-item" onclick="scrollToProject('blender')">
+        <h4>Blender</h4>
+      </div>
+      <div class="project-item" onclick="scrollToProject('canopy')">
         <h4>Canopy Commons</h4>
       </div>
       <div class="project-item" onclick="scrollToProject('state-st')">
         <h4>Shift: A Digital Memory</h4>
       </div>
-
       <h4>2024</h4>
-      <div class="project-item" onclick="scrollToProject('shift')">
-        <h4>Shift Creator Space</h4>
-      </div>
       <div class="project-item" onclick="scrollToProject('illustrations')">
         <h4>Chromatic Memories</h4>
       </div>
       <div class="project-item" onclick="scrollToProject('bedroom')">
         <h4>Bedroom Deconstructed</h4>
       </div>
-      <div class="project-item" onclick="scrollToProject('study-model')">
-        <h4>Negative Iterations</h4>
-      </div>
-
       <h4>2023</h4>
       <div class="project-item" onclick="scrollToProject('jewelry')">
         <h4>Jewelry Design</h4>
       </div>
-      
-      <h3 class="project-title">Playground</h3>
-      <div class="project-item" onclick="scrollToProject('blender')">
-        <h4>Blender</h4>
-      </div>
-      
       <div class="project-item" onclick="scrollToProject('misc-painting')">
-        <h4>Illustrations, Ceramics, and Other Media</h4>
+        <h4>From My Sketchbook</h4>
       </div>
-      
+
     </div>
   </div>
-            
+
   <div class="banner-container">
     <div class="scrolling-text">
       <span class="scrolling-text-content">
