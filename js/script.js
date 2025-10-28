@@ -20,7 +20,6 @@ function initializeLoading() {
   
   loadingImage.src = loadingImages[0];
   
-  // Counter animation (1-100 over 4 seconds)
   let counter = 1;
   const counterInterval = setInterval(() => {
     counter++;
@@ -47,13 +46,12 @@ function initializeLoading() {
   }, 2500);
 }
 
-// MOVE ALL BUTTON FUNCTIONS HERE (OUTSIDE OF DOMContentLoaded)
 function openBento() {
   window.open('https://bento.me/siyuge', '_blank');
 }
 
 function openResume() {
-  window.open('https://drive.google.com/file/d/1tQCro1kNr5WpdjznQuV_uc7oUeFMbZm4/view?usp=sharing', '_blank');
+  window.open('https://drive.google.com/file/d/1jVhWe34kawkJr_Kx6P_C8qhsTazEddk6/view?usp=sharing', '_blank');
 }
 
 function openShiftCreator() {
@@ -221,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  // Modify the color of stars to yellow after animation loads
+  // Modify the color of stars after animation loads
   heroAnimation.addEventListener('DOMLoaded', () => {
     const svgElement = heroLottieElement.querySelector('svg');
     if (svgElement) {

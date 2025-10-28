@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Thoughts</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="thoughts.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jvh5qmh.css">
+    <script type="module" src="thoughts.js"></script>
+</head>
+
+<body>
+    <div class="background-blob"></div>
+    <header>
+        <h1>Thoughts</h1>
+        <div id="auth-ui"></div>
+    </header>
+
+    <section id="public-list">
+        <h2>Entries</h2>
+        <div id="entries"></div>
+    </section>
+
+    <section id="admin-section" class="admin" style="display:none;">
+        <h2>What's On Your Mind?</h2>
+        <p id="saveStatus" style="font-size: 0.9em; color: gray;"></p>
+        <div id="admin-ui">
+            <label>Title</label>
+            <input id="entry-title" type="text" placeholder="Entry title" />
+
+            <label>Description</label>
+            <input id="entry-description" type="text" placeholder="Short summary or teaser" />
+
+            <label>Content</label>
+            <textarea id="entry-content" rows="16" placeholder="Write your thoughts..."></textarea>
+
+            <label class="inline"><input id="entry-published" type="checkbox" /> Publish now</label>
+
+            <div class="controls">
+                <button id="save-btn">Save new entry</button>
+                <button id="update-btn" style="display:none;" class="small">Update</button>
+                <button id="cancel-edit" style="display:none;" class="small">Cancel</button>
+            </div>
+
+            <h3 style="margin-top:18px;">Your entries (private + public)</h3>
+            <div id="admin-entries" class="muted">Loading...</div>
+        </div>
+    </section>
+</body>
+
+</html>
