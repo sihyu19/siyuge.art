@@ -41,6 +41,48 @@ const saveBtn = document.getElementById("save-btn");
 const updateBtn = document.getElementById("update-btn");
 const cancelEditBtn = document.getElementById("cancel-edit");
 
+// Initialize Quill editor (if Quill is loaded)
+let quill = null;
+try {
+  if (window.Quill) {
+    const textarea = contentInput;
+    // hide the textarea (we already hid in HTML but ensure here)
+    textarea.style.display = 'none';
+    // use existing #editor container if present, otherwise create one
+    let editorContainer = document.getElementById('editor');
+    if (!editorContainer) {
+      editorContainer = document.createElement('div');
+      editorContainer.id = 'editor';
+      textarea.parentNode.insertBefore(editorContainer, textarea);
+    }
+
+    quill = new Quill('#editor', {
+      theme: 'snow',
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+          ['link']
+        ]
+      }
+    });
+
+    // Populate quill with existing textarea value (if any)
+    if (textarea.value) {
+      quill.root.innerHTML = textarea.value;
+    }
+
+    // Sync quill -> hidden textarea so existing save/autosave logic continues to work
+    quill.on('text-change', () => {
+      textarea.value = quill.root.innerHTML;
+      // dispatch input event so autosave hears it
+      textarea.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  }
+} catch (e) {
+  console.warn('Quill not available or failed to initialize', e);
+}
+
 // ---------- Autosave while typing ----------
 const saveStatus = document.getElementById("saveStatus");
 let autosaveTimer = null;
@@ -216,6 +258,10 @@ async function loadAdminEntries() {
       titleInput.value = data.title || "";
       descriptionInput.value = data.description || "";
       contentInput.value = data.content || "";
+      if (quill) {
+        // use dangerouslyPasteHTML to preserve formatting
+        quill.root.innerHTML = data.content || "";
+      }
       publishedInput.checked = !!data.published;
       saveBtn.style.display = "none";
       updateBtn.style.display = "inline-block";
@@ -346,7 +392,7 @@ if (entryId) {
       day: "numeric"
     })
       }</div>
-      <div class="content">${nl2br(escapeHtml(d.content || ""))}</div>
+      <div class="content">${d.content || ""}</div>
       <p><a href="/thoughts">← Back to all entries</a></p>
     `;
   } else {

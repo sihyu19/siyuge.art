@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="thoughts.css">
     <link rel="stylesheet" href="https://use.typekit.net/jvh5qmh.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script type="module" src="thoughts.js"></script>
 </head>
 
@@ -33,7 +35,10 @@
             <input id="entry-description" type="text" placeholder="Short summary or teaser" />
 
             <label>Content</label>
-            <textarea id="entry-content" rows="16" placeholder="Write your thoughts..."></textarea>
+            <!-- Quill editor container (visible) -->
+            <div id="editor" style="height:220px; background:white;"></div>
+            <!-- Hidden textarea for compatibility with existing save/autosave code -->
+            <textarea id="entry-content" rows="16" placeholder="Write your thoughts..." style="display:none;"></textarea>
 
             <label class="inline"><input id="entry-published" type="checkbox" /> Publish now</label>
 
