@@ -14,6 +14,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/lightbox.css">
 </head>
 
 <body>
@@ -345,6 +346,12 @@
 
   <div class="dot" id="dot"></div>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img src="" alt="Enlarged view" id="lightbox-image">
+  </div>
+
   <div id="indexPanel" class="index-panel">
     <div>
       <h3 class="project-title">Design & Branding</h3>
@@ -406,7 +413,46 @@
   </div>
 
   <!-- Custom JavaScript -->
+  // Custom JavaScript
   <script src="./js/script.js"></script>
+  <script>
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-image');
+
+    // Add click handlers to all project images
+    document.querySelectorAll('.project-images-grid img, .single-project-image img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
+
+    function openLightbox(imgSrc) {
+      lightboxImg.src = imgSrc;
+      lightbox.classList.add('active');
+      // Prevent page scrolling while lightbox is open
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      // Re-enable page scrolling
+      document.body.style.overflow = '';
+    }
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox with escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
 </body>
 
 </html>

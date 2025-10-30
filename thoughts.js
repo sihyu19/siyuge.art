@@ -56,20 +56,28 @@ try {
       textarea.parentNode.insertBefore(editorContainer, textarea);
     }
 
+
     quill = new Quill('#editor', {
       theme: 'snow',
       modules: {
-        toolbar: [
-          ['bold', 'italic', 'underline'],
-          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-          ['link']
-        ]
+        toolbar: {
+          container: [
+            [{ 'header': [1, 2, false] }],
+            ['bold', 'italic', 'underline'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['link', 'image']
+          ]
+        }
       }
     });
 
-    // Populate quill with existing textarea value (if any)
+    // Populate quill with existing textarea value (if any) using clipboard API
     if (textarea.value) {
-      quill.root.innerHTML = textarea.value;
+      try {
+        quill.clipboard.dangerouslyPasteHTML(textarea.value);
+      } catch (e) {
+        quill.root.innerHTML = textarea.value;
+      }
     }
 
     // Sync quill -> hidden textarea so existing save/autosave logic continues to work
@@ -259,8 +267,11 @@ async function loadAdminEntries() {
       descriptionInput.value = data.description || "";
       contentInput.value = data.content || "";
       if (quill) {
-        // use dangerouslyPasteHTML to preserve formatting
-        quill.root.innerHTML = data.content || "";
+        try {
+          quill.clipboard.dangerouslyPasteHTML(data.content || "");
+        } catch (e) {
+          quill.root.innerHTML = data.content || "";
+        }
       }
       publishedInput.checked = !!data.published;
       saveBtn.style.display = "none";
