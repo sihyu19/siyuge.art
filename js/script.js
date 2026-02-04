@@ -1,4 +1,4 @@
-// Loading screen code (keep this at the top)
+// Loading screen code
 const loadingImages = [
   'https://i.postimg.cc/W4SX88dF/circle-ring.png',
   'https://i.postimg.cc/MTFt2Gbz/dimi.png',
@@ -75,7 +75,7 @@ function openCSS() {
 }
 
 function openShiftBrand(){
-  window.open('https://drive.google.com/file/d/1vynp9f_Jv0CBA5Il71hTPoxmoxte2Ns9/view?usp=sharing', '_blank');
+  window.open('https://drive.google.com/file/d/1V2kt3Fl0RQTvlNComZTrbUXEcsJ1aRbt/view?usp=sharing', '_blank');
 }
 
 function openMedium(){

@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 40px;
   font-family: arboria, sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
 }
 
@@ -64,6 +65,7 @@ nav {
 .nav-button,
 .link-button {
   font-size: 1em;
+  font-weight: 300;
   color: #0C120C;
   font-family: arboria, sans-serif;
   background: none;
@@ -264,7 +266,7 @@ p {
 .project-title {
   font-size: 1.5em;
   margin: 0 0 0 0;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .project-location {
@@ -675,7 +677,6 @@ p {
   border-radius: 4px;
   font-family: arboria, sans-serif;
   font-size: 1.2em;
-  font-weight: bold;
   min-width: 40px;
   text-align: center;
 }
@@ -689,7 +690,6 @@ p {
   border-radius: 6px;
   font-family: arboria, sans-serif;
   font-size: 1.2em;
-  font-weight: bold;
   text-align: left;
 }
 
