@@ -56,7 +56,15 @@ body {
   white-space: pre-wrap;
 }
 
+#choices {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
 button {
+  display: flex;
   font-size: 1.1em;
   font-weight: 300;
   color: #0C120C;
@@ -71,7 +79,7 @@ button {
 }
 
 button:hover {
-  background: #f0f0f0;
+  background: rgba(186, 25, 25, 0.1);
 }
 
 .hidden {

@@ -1,8 +1,10 @@
 const textEl = document.getElementById("text");
 const choicesEl = document.getElementById("choices");
 const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+let lastQuestionIndex = null;
 
-function typeText(text, speed = 10, callback) {
+function typeText(text, speed = 1, callback) {
   textEl.innerHTML = "";
   let i = 0;
 
@@ -20,6 +22,14 @@ const scenes = [
   {
     text: "I thought about getting you flowers and chocolates, or buying you another piece of jewelry, but none of them sounded special or fun. I thought about writing you a letter, but there are so many things I wanna say to you and my ADHD brain simply cannot put together any narrative. Every time I sit down to write about you, I get distracted. I never quite get the words out, but just end up spending an hour thinking about you.\nI think about the color of your eyes, the curves of your hair, the little lines around your eyes when you smile, and the softness of your skin when we cuddle in bed. There are so many things I love about you and if I were to put all of them in a letter it would be so, so long. So I decided to do this instead, your stupid swe brain would probably appreciate it more. Bear with my broken English, and happy valentines :) ",
     choices: null
+  },
+  {
+    question: "First of all, how are you today?",
+    choices: [
+      { label: "Great now that I've seen this", blurb: "BLURB_1" },
+      { label: "Could be better", blurb: "BLURB_2" },
+      { label: "I miss you", blurb: "BLURB_3" },
+    ]
   },
   {
     question: "Would you change anything about how we met?",
@@ -41,7 +51,7 @@ const scenes = [
     choices: [
       { label: "Best Friends(stfu I know this is not one word", blurb: "BLURB_1" },
       { label: "Unhinged", blurb: "BLURB_5" },
-      { label: "Comfortable", blurb: "I used to think tears were performative—a way for others to witness your pain. So I stopped crying a long time ago because I didn’t want anyone to see that part of me. Except when I watched Big Hero 6. I cried like a dog.\nI built a strong, independent woman façade around myself, a version of me that refused tears, that rejected emotional vulnerability altogether. That façade is still standing, even now. Just not in front of you. I’ve lost count of how many times I’ve cried in your arms, most of them over some stupid ass reason. And somehow, that’s where I feel safest.\nI don’t have to hide my feelings or pretend to be someone else around you. You know (for the most part) everything about me, and for some reason you still choose to love me. I offer you my entire heart, along with its quirks, its tantrums, its sensitivity, its eighteen hundred ways of being difficult. It’s a nuisance, truly. Except one redeeming quality: it loves you."}
+      { label: "Comfortable", blurb: "I used to think tears were performative—a way for others to witness your pain. So I stopped crying a long time ago because I didn’t want anyone to see that part of me. Except when I watched Big Hero 6. I cried like a dog.\nI built a strong, independent woman façade around myself, a version of me that refused tears, that rejected emotional vulnerability altogether. That façade is still standing, even now. Just not in front of you. I’ve lost count of how many times I’ve cried in your arms, most of them over some stupid ass reason. And somehow, that’s where I feel safest.\nI don’t have to hide my feelings or pretend to be someone else around you. You know (for the most part) everything about me, and for some reason you still choose to love me. I offer you my entire heart, along with its quirks, its tantrums, its sensitivity, its eighteen hundred ways of being difficult. It’s a nuisance, truly. Except one redeeming quality: it loves you." }
     ]
   },
   {
@@ -64,23 +74,27 @@ let sceneIndex = 0;
 function renderScene() {
   choicesEl.innerHTML = "";
   nextBtn.classList.add("hidden");
+  backBtn.classList.add("hidden");
 
   const scene = scenes[sceneIndex];
 
   if (scene.text) {
-    typeText(scene.text, 10, () => {
+    typeText(scene.text, 1, () => {
       nextBtn.classList.remove("hidden");
     });
   } else {
-    typeText(scene.question, 10, () => {
+    typeText(scene.question, 1, () => {
       scene.choices.forEach(choice => {
         const btn = document.createElement("button");
         btn.textContent = choice.label;
 
         btn.onclick = () => {
+          lastQuestionIndex = sceneIndex;
           choicesEl.innerHTML = "";
-          typeText(choice.blurb, 10, () => {
+
+          typeText(choice.blurb, 30, () => {
             nextBtn.classList.remove("hidden");
+            backBtn.classList.remove("hidden");
           });
         };
 
@@ -98,6 +112,14 @@ nextBtn.onclick = () => {
     typeText("Happy Valentine’s Day ❤️");
     nextBtn.classList.add("hidden");
   }
+};
+
+backBtn.onclick = () => {
+  sceneIndex = lastQuestionIndex;
+  lastQuestionIndex = null;
+  backBtn.classList.add("hidden");
+  nextBtn.classList.add("hidden");
+  renderScene();
 };
 
 renderScene();
