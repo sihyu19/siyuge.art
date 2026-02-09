@@ -460,11 +460,13 @@ p {
 
   .index-panel h4 {
     margin-top: 15px;
+    font-weight: 300;
   }
 
   .project-item h4 {
     margin-left: 20px;
     font-size: 0.9em;
+    font-weight: 300;
   }
 
   /* Banner mobile */
@@ -560,12 +562,14 @@ p {
   position: relative;
   line-height: 0.7;
   margin-left: 30px;
+  font-weight: 300;
 }
 
 .index-panel h4 {
   font-family: arboria, sans-serif;
   color: #0C120C;
   margin-top: 20px;
+  font-weight: 300;
 }
 
 .project-item h4:hover {
