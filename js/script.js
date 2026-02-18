@@ -46,10 +46,6 @@ function initializeLoading() {
   }, 2500);
 }
 
-function openBento() {
-  window.open('https://bento.me/siyuge', '_blank');
-}
-
 function openResume() {
   window.open('https://drive.google.com/file/d/1jVhWe34kawkJr_Kx6P_C8qhsTazEddk6/view?usp=sharing', '_blank');
 }
