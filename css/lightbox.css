@@ -37,7 +37,6 @@
   z-index: 1001;
 }
 
-/* Animation for the lightbox */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -47,7 +46,6 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Make project images clickable */
 .project-images-grid img,
 .single-project-image img {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cline x1='15' y1='15' x2='20' y2='20'/%3E%3C/svg%3E") 10 10, zoom-in;
