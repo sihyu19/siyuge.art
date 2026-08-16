@@ -5,26 +5,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hi, this is Siyu Ge</title>
+  <meta name="description"
+    content="Siyu Ge — designer studying Architecture and Cognitive Science at the University of Michigan. Brand identity, graphic design, 3D, and architecture.">
+  <meta name="theme-color" content="#FDFFFC">
+
+  <meta property="og:title" content="Hi, this is Siyu Ge">
+  <meta property="og:description"
+    content="Designer studying Architecture and Cognitive Science at the University of Michigan. Brand identity, graphic design, 3D, and architecture.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.siyuge.art/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Start the handshake with the image hosts while the CSS is still parsing -->
+  <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
 
   <!-- Fonts -->
   <link rel="stylesheet" href="https://use.typekit.net/jvh5qmh.css">
 
-  <!-- Lottie -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
-
   <!-- CSS -->
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/lightbox.css">
+
+  <!--
+    Flag the loading state before the body paints, so content never flashes
+    in and then hides. The timer is a failsafe: if script.js throws or never
+    arrives, the page reveals itself anyway rather than staying blank.
+  -->
+  <script>
+    document.documentElement.classList.add('js-loading');
+    setTimeout(function () {
+      document.documentElement.classList.remove('js-loading');
+    }, 9000);
+  </script>
+
+  <!-- Lottie (decorative only) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+  <script defer src="./js/script.js"></script>
 </head>
 
 <body>
   <div id="loadingScreen" class="loading-screen">
     <div class="picture-frame">
-      <img id="loadingImage" src="" alt="Loading">
+      <img id="loadingImage" src="" alt="">
       <div id="loadingText" class="loading-text">Siyu Ge</div>
       <div id="loadingCounter" class="loading-counter">1</div>
     </div>
   </div>
+
   <nav>
     <button class="nav-button" onclick="toggleIndexPanel()">Index</button>
     <button class="nav-button" onclick="openMedium()">Medium</button>
@@ -32,13 +60,12 @@
   </nav>
 
   <div class="hero-section">
-    <div class="background-blob"></div>
-
-    <div class="services-hero-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324606" data-animation-type="lottie"
-      data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json"
-      data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
-      data-default-duration="3.3333333333333335" data-duration="0">
+    <!-- The wrapper exists purely to clip the blob. See styles.css. -->
+    <div class="blob-clip" aria-hidden="true">
+      <div class="background-blob"></div>
     </div>
+
+    <div class="services-hero-lottie" aria-hidden="true"></div>
 
     <div class="name-title header-container">
       <h1>Hi,<br>this is<br>Siyu :)</h1>
@@ -62,19 +89,18 @@
     </div>
   </div>
 
-  <div class="services-arrow-lottie" data-w-id="2e93df24-f29a-e4d7-3bc9-f6ccc8324605" data-animation-type="lottie"
-    data-src="https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json"
-    data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
-    data-default-duration="2.033333333333333" data-duration="0">
-  </div>
+  <div class="services-arrow-lottie" aria-hidden="true"></div>
 
   <div class="my-work-svg">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 3 250 48">
+    <!--
+      The animated path deliberately has no `d` attribute: script.js copies it
+      from .background-line at runtime. The two paths are identical and the
+      geometry is ~2.5KB, so shipping it twice was pure weight.
+    -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 3 250 48" role="img" aria-label="My Work">
       <path class="background-line"
         d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z" />
-
-      <path class="animated-line"
-        d="M0 45.26L0 9.47L7.13 9.47L15.60 34.81Q16.77 38.35 17.31 40.11Q17.92 38.16 19.21 34.38L27.78 9.47L34.16 9.47L34.16 45.26L29.59 45.26L29.59 15.31L19.19 45.26L14.92 45.26L4.57 14.79L4.57 45.26L0 45.26ZM51.88 45.26L51.88 30.10L38.09 9.47L43.85 9.47L50.90 20.26Q52.86 23.29 54.54 26.32Q56.15 23.51 58.45 20.00L65.38 9.47L70.90 9.47L56.62 30.10L56.62 45.26L51.88 45.26ZM94.38 45.26L84.89 9.47L89.75 9.47L95.19 32.93Q96.07 36.62 96.70 40.26Q98.07 34.52 98.32 33.64L105.13 9.47L110.84 9.47L115.97 27.59Q117.90 34.33 118.75 40.26Q119.43 36.87 120.53 32.47L126.15 9.47L130.91 9.47L121.09 45.26L116.53 45.26L108.98 17.99Q108.03 14.58 107.86 13.79Q107.30 16.26 106.81 17.99L99.22 45.26L94.38 45.26ZM133.89 27.83Q133.89 18.92 138.67 13.88Q143.46 8.84 151.03 8.84Q155.98 8.84 159.96 11.21Q163.94 13.57 166.03 17.81Q168.12 22.05 168.12 27.42Q168.12 32.86 165.92 37.16Q163.72 41.46 159.69 43.66Q155.66 45.87 151.00 45.87Q145.95 45.87 141.97 43.43Q137.99 40.99 135.94 36.77Q133.89 32.54 133.89 27.83M138.77 27.91Q138.77 34.38 142.25 38.10Q145.73 41.82 150.98 41.82Q156.32 41.82 159.78 38.06Q163.23 34.30 163.23 27.39Q163.23 23.02 161.76 19.76Q160.28 16.50 157.43 14.71Q154.59 12.92 151.05 12.92Q146.02 12.92 142.40 16.37Q138.77 19.82 138.77 27.91ZM174.29 45.26L174.29 9.47L190.16 9.47Q194.95 9.47 197.44 10.44Q199.93 11.40 201.42 13.84Q202.91 16.28 202.91 19.24Q202.91 23.05 200.44 25.66Q197.97 28.27 192.82 28.98Q194.70 29.88 195.68 30.76Q197.75 32.67 199.61 35.52L205.83 45.26L199.88 45.26L195.14 37.82Q193.07 34.59 191.72 32.89Q190.38 31.18 189.32 30.49Q188.26 29.81 187.16 29.54Q186.35 29.37 184.52 29.37L179.03 29.37L179.03 45.26L174.29 45.26M179.03 25.27L189.21 25.27Q192.46 25.27 194.29 24.60Q196.12 23.93 197.07 22.45Q198.02 20.97 198.02 19.24Q198.02 16.70 196.18 15.06Q194.34 13.43 190.36 13.43L179.03 13.43L179.03 25.27ZM210.13 45.26L210.13 9.47L214.87 9.47L214.87 27.22L232.64 9.47L239.06 9.47L224.05 23.97L239.72 45.26L233.47 45.26L220.73 27.15L214.87 32.86L214.87 45.26L210.13 45.26Z" />
+      <path class="animated-line" />
     </svg>
   </div>
 
@@ -92,13 +118,13 @@
           </p>
         </div>
         <div class="project-images-grid">
-          <img src="assets/mymet1.png" alt="logo">
-          <img src="assets/mymet2.png" alt="logo usage">
-          <img src="assets/mymet3.png" alt="mobile app">
-          <img src="assets/mymet4.png" alt="social media">
-          <img src="assets/mymet5.png" alt="visual direction">
-          <img src="assets/mymet6.png" alt="logo usage">
-          <img src="assets/mymet7.png" alt="website">
+          <img src="assets/mymet1.png" alt="MyMetabolism logo" loading="lazy" decoding="async" width="8334" height="6250">
+          <img src="assets/mymet2.png" alt="MyMetabolism logo usage rules" loading="lazy" decoding="async" width="8333" height="11108">
+          <img src="assets/mymet3.png" alt="MyMetabolism mobile app screens" loading="lazy" decoding="async" width="8333" height="17908">
+          <img src="assets/mymet4.png" alt="MyMetabolism social media templates" loading="lazy" decoding="async" width="8333" height="11113">
+          <img src="assets/mymet5.png" alt="MyMetabolism visual direction and imagery" loading="lazy" decoding="async" width="4043" height="3035">
+          <img src="assets/mymet6.png" alt="MyMetabolism logo lockups" loading="lazy" decoding="async" width="8333" height="9575">
+          <img src="assets/mymet7.png" alt="MyMetabolism website design" loading="lazy" decoding="async" width="8375" height="7788">
         </div>
       </div>
 
@@ -119,25 +145,25 @@
           </p>
         </div>
         <div class="project-images-grid">
-          <img src="https://i.postimg.cc/8CBWm2gz/diag-poster.jpg" alt="Diag poster">
-          <img src="https://i.postimg.cc/WbCMNm7T/SHIFT-sunday-poster.png" alt="Shift Sunday">
-          <img src="https://i.postimg.cc/ThM752kC/open-fisi-poster.png" alt="Open FISI poster">
-          <img src="assets/showcase 2025.png" alt="showcase">
-          <img src="assets/f25 shift diag board wooden letters (1).jpg" alt="Diag poster">
-          <img src="assets/f25 shift recruit diag board balloon.jpg" alt="Diag poster">
-          <img src="https://i.postimg.cc/52z86HPv/fisi-coffee-bar-poster.png" alt="fisi + coffee bar">
-          <img src="assets/open fisi 4.9.png" alt="open fisi">
-          <img src="https://i.postimg.cc/433hjBQC/shift-insta-mockup.png" alt="insta">
-          <img src="https://i.postimg.cc/63rvQ7Vc/flier-w25.png" alt="Flier1 front">
-          <img src="https://i.postimg.cc/tTQ6yd67/open-house-flyer1-2.png" alt="Flier1 back">
-          <img src="assets/speakeasy v2 poster.png" alt="speakeasy">
-          <img src="assets/f25 shift recruiting flier balloon texts.png" alt="Flier3 front">
-          <img src="assets/f25 shift recruiting flier balloon texts back.png" alt="Flier3 back">
+          <img src="https://i.postimg.cc/8CBWm2gz/diag-poster.jpg" alt="Shift Diag poster" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/WbCMNm7T/SHIFT-sunday-poster.png" alt="Shift Sunday poster" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/ThM752kC/open-fisi-poster.png" alt="Open FISI poster" loading="lazy" decoding="async">
+          <img src="assets/showcase 2025.png" alt="Shift 2025 showcase poster" loading="lazy" decoding="async" width="2550" height="3300">
+          <img src="assets/f25 shift diag board wooden letters (1).jpg" alt="Diag board with wooden Shift letters" loading="lazy" decoding="async" width="12600" height="19800">
+          <img src="assets/f25 shift recruit diag board balloon.jpg" alt="Recruiting Diag board with balloons" loading="lazy" decoding="async" width="12600" height="19800">
+          <img src="https://i.postimg.cc/52z86HPv/fisi-coffee-bar-poster.png" alt="FISI coffee bar poster" loading="lazy" decoding="async">
+          <img src="assets/open fisi 4.9.png" alt="Open FISI event poster" loading="lazy" decoding="async" width="2550" height="3300">
+          <img src="https://i.postimg.cc/433hjBQC/shift-insta-mockup.png" alt="Shift Instagram grid mockup" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/63rvQ7Vc/flier-w25.png" alt="Winter 2025 flier, front" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/tTQ6yd67/open-house-flyer1-2.png" alt="Open house flier, back" loading="lazy" decoding="async">
+          <img src="assets/speakeasy v2 poster.png" alt="Speakeasy event poster" loading="lazy" decoding="async" width="2550" height="3300">
+          <img src="assets/f25 shift recruiting flier balloon texts.png" alt="Fall 2025 recruiting flier, front" loading="lazy" decoding="async" width="1028" height="2386">
+          <img src="assets/f25 shift recruiting flier balloon texts back.png" alt="Fall 2025 recruiting flier, back" loading="lazy" decoding="async" width="1080" height="2508">
         </div>
       </div>
 
-      <!-- Project 10 -->
-      <div id="adobe creative meetup" class="project-wrapper">
+      <!-- Adobe Creative Meetup -->
+      <div id="adobe-creative-meetup" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Adobe Creative Meetup</h3>
           <p class="project-location">Print Assets and Merch, 2025</p>
@@ -147,15 +173,15 @@
           </p>
         </div>
         <div class="project-images-grid">
-          <img src="assets/nametag mockup.png" alt="nametag mockup">
-          <img src="assets/adobe nametag.png" alt="adobe nametag">
-          <img src="assets/wristband mockup.png" alt="adobe wristband">
-          <img src="assets/adobe bag mockup.png" alt="adobe paper bag">
+          <img src="assets/nametag mockup.png" alt="Adobe meetup name tag mockup" loading="lazy" decoding="async" width="1440" height="1080">
+          <img src="assets/adobe nametag.png" alt="Adobe meetup name tag design" loading="lazy" decoding="async" width="3652" height="3300">
+          <img src="assets/wristband mockup.png" alt="Adobe meetup wristband" loading="lazy" decoding="async" width="1440" height="1080">
+          <img src="assets/adobe bag mockup.png" alt="Adobe meetup paper merch bag" loading="lazy" decoding="async" width="3600" height="2400">
         </div>
       </div>
 
-      <!-- Project 12 -->
-      <div id="shift merch" class="project-wrapper">
+      <!-- Shift Merchandise -->
+      <div id="shift-merch" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Shift Merchandise Design</h3>
           <p class="project-location">Brand Identity, Merch, 2025</p>
@@ -165,15 +191,15 @@
           </p>
         </div>
         <div class="project-images-grid">
-          <img src="assets/shift stickers.png" alt="stickers">
-          <img src="assets/mug mockup.png" alt="mug">
-          <img src="assets/mug pattern.png" alt="mug pattern">
-          <img src="assets/crewneck mockup.png" alt="shift crewneck">
+          <img src="assets/shift stickers.png" alt="Shift sticker sheet" loading="lazy" decoding="async" width="3300" height="2550">
+          <img src="assets/mug mockup.png" alt="Shift mug mockup" loading="lazy" decoding="async" width="4000" height="3000">
+          <img src="assets/mug pattern.png" alt="Shift mug wrap pattern" loading="lazy" decoding="async" width="3300" height="2550">
+          <img src="assets/crewneck mockup.png" alt="Shift crewneck mockup" loading="lazy" decoding="async" width="3300" height="2550">
         </div>
       </div>
 
-      <!-- Project 13 -->
-      <div id="better cafe" class="project-wrapper">
+      <!-- Better Café -->
+      <div id="better-cafe" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Better Café: Sesame the Mascot</h3>
           <p class="project-location">Brand Identity, Mascot, 2025</p>
@@ -182,19 +208,18 @@
           </p>
         </div>
         <div class="project-images-grid">
-          <img src="assets/mascot og1.png" alt="mascot1">
-          <img src="assets/mascot performative1.png" alt="mascot5">
-          <img src="assets/mascot og2.png" alt="mascot2">
-          <img src="assets/mascot performative3.png" alt="mascot6">
-          <img src="assets/mascot og3.png" alt="mascot3">
-          <img src="assets/mascot performative4.png" alt="mascot7">
-          <img src="assets/mascot og4.png" alt="mascot4">
-          <img src="assets/mascot performative5.png" alt="mascot8">
+          <img src="assets/mascot og1.png" alt="Sesame the mascot, original edition 1" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot performative1.png" alt="Sesame the mascot, performative edition 1" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot og2.png" alt="Sesame the mascot, original edition 2" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot performative3.png" alt="Sesame the mascot, performative edition 2" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot og3.png" alt="Sesame the mascot, original edition 3" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot performative4.png" alt="Sesame the mascot, performative edition 3" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot og4.png" alt="Sesame the mascot, original edition 4" loading="lazy" decoding="async" width="1080" height="1080">
+          <img src="assets/mascot performative5.png" alt="Sesame the mascot, performative edition 4" loading="lazy" decoding="async" width="1080" height="1080">
         </div>
       </div>
 
-
-      <!-- Project 8 -->
+      <!-- Blender -->
       <div id="blender" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Blender</h3>
@@ -203,23 +228,23 @@
             animations + product demos. </p>
         </div>
         <div class="project-images-grid">
-          <img src="assets/coffee shop.gif" alt="coffee shop">
-          <img src="assets/donut.gif" alt="donuts">
-          <img src="assets/pink room final.png" alt="bedroom">
-          <img src="assets/ui button.gif" alt="ui button">
-          <img src="assets/arcade.gif" alt="arcade">
-          <img src="assets/vinyl.gif" alt="vinyl">
-          <img src="assets/bodywash.JPG" alt="bodywash">
-          <img src="assets/cleanser.gif" alt="cleanser">
-          <img src="assets/flying phish!.gif" alt="fish">
-          <img src="assets/drink.gif" alt="drink">
-          <img src="assets/cosmetic tube.gif" alt="cosmetic tube">
-          <img src="assets/peel off bottle.gif" alt="peel off bottle">
-          <img src="assets/hallway.gif" alt="hallway">
+          <img src="assets/coffee shop.gif" alt="Coffee shop animation" loading="lazy" decoding="async" width="800" height="617">
+          <img src="assets/donut.gif" alt="Donut animation" loading="lazy" decoding="async" width="400" height="225">
+          <img src="assets/pink room final.png" alt="Pink bedroom render" loading="lazy" decoding="async" width="1620" height="1080">
+          <img src="assets/ui button.gif" alt="UI button animation" loading="lazy" decoding="async" width="800" height="450">
+          <img src="assets/arcade.gif" alt="Arcade machine animation" loading="lazy" decoding="async" width="400" height="300">
+          <img src="assets/vinyl.gif" alt="Vinyl record animation" loading="lazy" decoding="async" width="800" height="800">
+          <img src="assets/bodywash.JPG" alt="Body wash product render" loading="lazy" decoding="async" width="1080" height="1440">
+          <img src="assets/cleanser.gif" alt="Cleanser product animation" loading="lazy" decoding="async" width="800" height="800">
+          <img src="assets/flying phish!.gif" alt="Flying fish animation" loading="lazy" decoding="async" width="800" height="1067">
+          <img src="assets/drink.gif" alt="Drink can animation" loading="lazy" decoding="async" width="800" height="533">
+          <img src="assets/cosmetic tube.gif" alt="Cosmetic tube animation" loading="lazy" decoding="async" width="800" height="1067">
+          <img src="assets/peel off bottle.gif" alt="Peel-off bottle animation" loading="lazy" decoding="async" width="1000" height="1333">
+          <img src="assets/hallway.gif" alt="Hallway walkthrough animation" loading="lazy" decoding="async" width="800" height="1067">
         </div>
       </div>
 
-      <!-- Project 6 -->
+      <!-- Canopy Commons -->
       <div id="canopy" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Canopy Commons</h3>
@@ -236,16 +261,16 @@
             design principles and thoughtful spatial organization.</p>
         </div>
         <div class="single-project-image">
-          <img src="https://i.postimg.cc/pXftSxzb/perspective.png" alt="canopy perspective">
+          <img src="https://i.postimg.cc/pXftSxzb/perspective.png" alt="Canopy Commons perspective render" loading="lazy" decoding="async">
           <div class="project-images-grid">
-            <img src="https://i.postimg.cc/qqZCVn9q/plan-no-ceiling-rendered.jpg" alt="canopy plan">
-            <img src="https://i.postimg.cc/T3TXMSJy/inside2.jpg" alt="canopy inside mock">
-            <img src="https://i.postimg.cc/VLQ845SW/elevation.png" alt="canopy elevation">
+            <img src="https://i.postimg.cc/qqZCVn9q/plan-no-ceiling-rendered.jpg" alt="Canopy Commons floor plan" loading="lazy" decoding="async">
+            <img src="https://i.postimg.cc/T3TXMSJy/inside2.jpg" alt="Canopy Commons interior render" loading="lazy" decoding="async">
+            <img src="https://i.postimg.cc/VLQ845SW/elevation.png" alt="Canopy Commons elevation" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
 
-      <!-- Project 5 -->
+      <!-- Shift: A Digital Memory -->
       <div id="state-st" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Shift: A Digital Memory</h3>
@@ -262,11 +287,11 @@
             place that shaped the creative journey of countless students in their college life.</p>
         </div>
         <div class="single-project-image">
-          <img src="https://i.postimg.cc/MZr5MBZj/final.jpg" alt="old house">
+          <img src="https://i.postimg.cc/MZr5MBZj/final.jpg" alt="3D recreation of the old Shift clubhouse" loading="lazy" decoding="async">
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- Chromatic Memoirs -->
       <div id="illustrations" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Chromatic Memoirs</h3>
@@ -278,23 +303,22 @@
             landscape.Each face tells a story that intertwines with my own.</p>
         </div>
         <div class="project-images-grid">
-          <img src="https://i.postimg.cc/5yvgmNMk/IMG-0813.jpg" alt="Dimi">
-          <img src="https://i.postimg.cc/zDRxNpRS/IMG-0992.jpg" alt="Glenn">
-          <img src="assets/stoopid2.jpg" alt="Rohan">
-          <img src="https://i.postimg.cc/RZHySBty/IMG-5487.jpg" alt="eyes">
-          <img src="https://i.postimg.cc/Yq68G9Rv/IMG-5478.jpg" alt="Painting">
-          <img src="https://i.postimg.cc/tJtPT1by/IMG-0881.jpg" alt="Scharte">
-          <img src="https://i.postimg.cc/ZYcCWz3T/Screenshot-2024-09-11-at-6-29-19-PM.png" alt="Elfin">
-          <img src="https://i.postimg.cc/bwMGq0nk/Screenshot-2024-09-11-at-6-28-37-PM.png" alt="Josephina">
-          <img src="https://i.postimg.cc/zB4pWH4g/damn.png" alt="Movie">
-          <img src="https://i.postimg.cc/0NV98PF3/4.jpg" alt="Mukundh">
-          <img src="https://i.postimg.cc/76DptWfc/me-n-bitch2.png" alt="Me N Bitch">
-          <img src="https://i.postimg.cc/wMTRtFh0/IMG-3991.jpg" alt="holy">
+          <img src="https://i.postimg.cc/5yvgmNMk/IMG-0813.jpg" alt="Portrait: Dimi" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/zDRxNpRS/IMG-0992.jpg" alt="Portrait: Glenn" loading="lazy" decoding="async">
+          <img src="assets/stoopid2.jpg" alt="Portrait: Rohan" loading="lazy" decoding="async" width="5136" height="6848">
+          <img src="https://i.postimg.cc/RZHySBty/IMG-5487.jpg" alt="Study of eyes" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/Yq68G9Rv/IMG-5478.jpg" alt="Painting" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/tJtPT1by/IMG-0881.jpg" alt="Portrait: Scharte" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/ZYcCWz3T/Screenshot-2024-09-11-at-6-29-19-PM.png" alt="Portrait: Elfin" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/bwMGq0nk/Screenshot-2024-09-11-at-6-28-37-PM.png" alt="Portrait: Josephina" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/zB4pWH4g/damn.png" alt="Film still study" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/0NV98PF3/4.jpg" alt="Portrait: Mukundh" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/76DptWfc/me-n-bitch2.png" alt="Double portrait" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/wMTRtFh0/IMG-3991.jpg" alt="Portrait study" loading="lazy" decoding="async">
         </div>
       </div>
 
-
-      <!-- Project 7 -->
+      <!-- Bedroom Deconstructed -->
       <div id="bedroom" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Bedroom Deconstructed</h3>
@@ -307,11 +331,11 @@
             shape our understanding of space.</p>
         </div>
         <div class="single-project-image">
-          <img src="assets/bedroom deconstructed.png" alt="bedroom deconstructed">
+          <img src="assets/bedroom deconstructed.png" alt="Bedroom deconstructed: architectural drawing series" loading="lazy" decoding="async" width="4365" height="3300">
         </div>
       </div>
 
-      <!-- Project 3 -->
+      <!-- Jewelry -->
       <div id="jewelry" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">Jewelry Design</h3>
@@ -321,18 +345,18 @@
             process shape expression.</p>
         </div>
         <div class="project-images-grid">
-          <img src="https://i.postimg.cc/R0MXrD7R/IMG-5852.jpg" alt="Grid">
-          <img src="https://i.postimg.cc/7LVtfkHd/ha2.png" alt="Circle">
-          <img src="https://i.postimg.cc/nzSdGGQ1/ha3.png" alt="Nest">
-          <img src="https://i.postimg.cc/cLGFhH6P/Screenshot-2024-12-09-at-12-38-00-AM.png" alt="Pearl">
-          <img src="https://i.postimg.cc/63pjZmT3/1.png" alt="Silver earrings">
-          <img src="https://i.postimg.cc/m2Hd7MZQ/Screenshot-2024-12-09-at-12-37-43-AM.png" alt="Twist">
-          <img src="https://i.postimg.cc/FzfTWkyX/ha4.png" alt="Fancy rings">
-          <img src="https://i.postimg.cc/Jz3P2Lk0/Screenshot-2024-12-09-at-12-37-52-AM.png" alt="Twist2">
+          <img src="https://i.postimg.cc/R0MXrD7R/IMG-5852.jpg" alt="Grid pendant" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/7LVtfkHd/ha2.png" alt="Circle piece" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/nzSdGGQ1/ha3.png" alt="Nest piece" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/cLGFhH6P/Screenshot-2024-12-09-at-12-38-00-AM.png" alt="Pearl piece" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/63pjZmT3/1.png" alt="Silver earrings" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/m2Hd7MZQ/Screenshot-2024-12-09-at-12-37-43-AM.png" alt="Twist piece" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/FzfTWkyX/ha4.png" alt="Sculptural rings" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/Jz3P2Lk0/Screenshot-2024-12-09-at-12-37-52-AM.png" alt="Twist piece, alternate" loading="lazy" decoding="async">
         </div>
       </div>
 
-      <!-- Project 9 -->
+      <!-- From My Sketchbook -->
       <div id="misc-painting" class="project-wrapper">
         <div class="project-info">
           <h3 class="project-title">From My Sketchbook</h3>
@@ -342,55 +366,54 @@
             why I love creating in the first place.</p>
         </div>
         <div class="project-images-grid">
-          <img src="https://i.postimg.cc/nh6LyF81/IMG-2778.jpg" alt="Self-portrait">
-          <img src="https://i.postimg.cc/90wbWjJZ/glass-bowl.png" alt="glass bowl">
-          <img src="https://i.postimg.cc/fbLyZkf0/me-carrying-my-head.jpg" alt="me carrying my head">
-          <img src="https://i.postimg.cc/9X11jJbL/stained-glass.png" alt="stained glass">
-          <img src="assets/jar w eyeball.JPG" alt="jar">
-          <img src="https://i.postimg.cc/8PYkvpCV/Wechat-IMG1379.jpg" alt="Fish">
-          <img src="https://i.postimg.cc/0QvyNVyM/Screenshot-2024-12-09-at-12-30-25-AM.png" alt="Long Fall">
-          <img src="assets/building.png" alt="building">
-          <img src="https://i.postimg.cc/zBrpqQ4c/IMG-2497.jpg" alt="ceramics plate">
-          <img src="https://i.postimg.cc/3JR1rmbY/storm.png" alt="storm">
-          <img src="https://i.postimg.cc/qqBL33Jc/IMG-2498.jpg" alt="jar front">
-          <img src="https://i.postimg.cc/yx5WrKZS/three-heads.jpg" alt="three heads">
-          <img src="https://i.postimg.cc/CdTSqx8J/ZOINK.png" alt="ZOINK">
-          <img src="https://i.postimg.cc/pr0BYLrw/IMG-2499.jpg" alt="jar2">
+          <img src="https://i.postimg.cc/nh6LyF81/IMG-2778.jpg" alt="Self-portrait" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/90wbWjJZ/glass-bowl.png" alt="Glass bowl" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/fbLyZkf0/me-carrying-my-head.jpg" alt="Illustration: carrying my head" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/9X11jJbL/stained-glass.png" alt="Stained glass panel" loading="lazy" decoding="async">
+          <img src="assets/jar w eyeball.JPG" alt="Ceramic jar with eyeball" loading="lazy" decoding="async" width="1080" height="1440">
+          <img src="https://i.postimg.cc/8PYkvpCV/Wechat-IMG1379.jpg" alt="Fish illustration" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/0QvyNVyM/Screenshot-2024-12-09-at-12-30-25-AM.png" alt="Long Fall" loading="lazy" decoding="async">
+          <img src="assets/building.png" alt="Building illustration" loading="lazy" decoding="async" width="2471" height="3300">
+          <img src="https://i.postimg.cc/zBrpqQ4c/IMG-2497.jpg" alt="Ceramic plate" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/3JR1rmbY/storm.png" alt="Storm illustration" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/qqBL33Jc/IMG-2498.jpg" alt="Ceramic jar, front" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/yx5WrKZS/three-heads.jpg" alt="Three heads" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/CdTSqx8J/ZOINK.png" alt="ZOINK" loading="lazy" decoding="async">
+          <img src="https://i.postimg.cc/pr0BYLrw/IMG-2499.jpg" alt="Ceramic jar, alternate view" loading="lazy" decoding="async">
         </div>
       </div>
-
 
     </div>
   </div>
 
-  <div class="dot" id="dot"></div>
+  <div class="dot" id="dot" aria-hidden="true"></div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">×</button>
     <img src="" alt="Enlarged view" id="lightbox-image">
   </div>
 
   <div id="indexPanel" class="index-panel">
     <div>
-      <h3 class="project-title">Design & Branding</h3>
-            <div class="project-item" onclick="scrollToProject('mymetabolism')">
+      <h3 class="project-title">Design &amp; Branding</h3>
+      <div class="project-item" onclick="scrollToProject('mymetabolism')">
         <h4>MyMetabolism</h4>
       </div>
       <div class="project-item" onclick="scrollToProject('shift')">
         <h4>Shift Creator Space</h4>
       </div>
-      <div class="project-item" onclick="scrollToProject('adobe creative meetup')">
+      <div class="project-item" onclick="scrollToProject('adobe-creative-meetup')">
         <h4>Adobe Creative Meetup</h4>
       </div>
-      <div class="project-item" onclick="scrollToProject('shift merch')">
+      <div class="project-item" onclick="scrollToProject('shift-merch')">
         <h4>Shift Merchandise Design</h4>
       </div>
-      <div class="project-item" onclick="scrollToProject('better cafe')">
+      <div class="project-item" onclick="scrollToProject('better-cafe')">
         <h4>Better Café: Sesame the Mascot</h4>
       </div>
 
-      <h3 class="project-title">Independent & Art Projects</h3>
+      <h3 class="project-title">Independent &amp; Art Projects</h3>
       <h4>2025</h4>
       <div class="project-item" onclick="scrollToProject('blender')">
         <h4>Blender</h4>
@@ -403,7 +426,7 @@
       </div>
       <h4>2024</h4>
       <div class="project-item" onclick="scrollToProject('illustrations')">
-        <h4>Chromatic Memories</h4>
+        <h4>Chromatic Memoirs</h4>
       </div>
       <div class="project-item" onclick="scrollToProject('bedroom')">
         <h4>Bedroom Deconstructed</h4>
@@ -426,7 +449,7 @@
         siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu *
         siyuge@umich.edu * siyuge@umich.edu *
       </span>
-      <span class="scrolling-text-content">
+      <span class="scrolling-text-content" aria-hidden="true">
         siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu *
         siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu * siyuge@umich.edu *
         siyuge@umich.edu * siyuge@umich.edu *
@@ -434,39 +457,36 @@
     </div>
   </div>
 
-  <script src="./js/script.js"></script>
   <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-image');
+    (function () {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-image');
 
-    document.querySelectorAll('.project-images-grid img, .single-project-image img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.src));
-    });
-
-    function openLightbox(imgSrc) {
-      lightboxImg.src = imgSrc;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
+      function openLightbox(img) {
+        lightboxImg.src = img.currentSrc || img.src;
+        lightboxImg.alt = img.alt || 'Enlarged view';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
-    });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
-    });
+      window.closeLightbox = function () {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      };
+
+      document.querySelectorAll('.project-images-grid img, .single-project-image img').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img));
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+      });
+    })();
   </script>
-</body>
 </body>
 
 </html>

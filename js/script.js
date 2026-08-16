@@ -1,4 +1,10 @@
-// Loading screen code
+/* ------------------------------------------------------------------
+   Loading screen
+   Tracks real asset progress instead of a fixed timer.
+   The `js-loading` class is added by an inline script in <head> so the
+   page never flashes; it is removed here (or by the inline failsafe).
+------------------------------------------------------------------- */
+
 const loadingImages = [
   'https://i.postimg.cc/W4SX88dF/circle-ring.png',
   'https://i.postimg.cc/MTFt2Gbz/dimi.png',
@@ -8,249 +14,256 @@ const loadingImages = [
   'https://i.postimg.cc/XNx4F6N4/2.png',
 ];
 
-let currentImageIndex = 0;
-let loadingComplete = false;
+const MIN_LOADING_MS = 900;   // don't let it flash by
+const MAX_LOADING_MS = 8000;  // hard ceiling if something never resolves
 
-function initializeLoading() {
-  document.body.classList.add('loading');
-  
-  const loadingImage = document.getElementById('loadingImage');
-  const loadingCounter = document.getElementById('loadingCounter');
-  const loadingScreen = document.getElementById('loadingScreen');
-  
-  loadingImage.src = loadingImages[0];
-  
-  let counter = 1;
-  const counterInterval = setInterval(() => {
-    counter++;
-    loadingCounter.textContent = counter;
-    if (counter >= 100) {
-      clearInterval(counterInterval);
-    }
-  }, 20);
-  
-  const imageInterval = setInterval(() => {
-    currentImageIndex = (currentImageIndex + 1) % loadingImages.length;
-    loadingImage.src = loadingImages[currentImageIndex];
-  }, 200);
-  
-  setTimeout(() => {
-    clearInterval(imageInterval);
-    loadingScreen.classList.add('slide-up');
-    document.body.classList.remove('loading');
-    
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-      loadingComplete = true;
-    }, 800);
-  }, 2500);
+function preloadImage(src) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.onload = img.onerror = resolve;
+    img.src = src;
+  });
 }
 
+function whenWindowLoaded() {
+  return new Promise(resolve => {
+    if (document.readyState === 'complete') resolve();
+    else window.addEventListener('load', resolve, { once: true });
+  });
+}
+
+function initializeLoading() {
+  const screen = document.getElementById('loadingScreen');
+  const image = document.getElementById('loadingImage');
+  const counter = document.getElementById('loadingCounter');
+  if (!screen || !image || !counter) return;
+
+  const started = performance.now();
+
+  // The things we genuinely wait for. Each one that settles moves the number.
+  const jobs = [
+    ...loadingImages.map(preloadImage),
+    document.fonts ? document.fonts.ready : Promise.resolve(),
+    whenWindowLoaded(),
+  ];
+
+  let settled = 0;
+  const total = jobs.length;
+  jobs.forEach(job => Promise.resolve(job).then(bump, bump));
+  function bump() { settled++; }
+
+  // Cycle the frames while we wait.
+  let frame = 0;
+  image.src = loadingImages[0];
+  const cycle = setInterval(() => {
+    frame = (frame + 1) % loadingImages.length;
+    image.src = loadingImages[frame];
+  }, 200);
+
+  let shown = 0;
+  let finished = false;
+
+  function dismiss() {
+    if (finished) return;
+    finished = true;
+    clearInterval(cycle);
+    counter.textContent = '100';
+    screen.classList.add('slide-up');
+    document.documentElement.classList.remove('js-loading');
+    setTimeout(() => { screen.style.display = 'none'; }, 800);
+  }
+
+  function tick() {
+    const elapsed = performance.now() - started;
+    const ready = settled === total && elapsed >= MIN_LOADING_MS;
+    const timedOut = elapsed >= MAX_LOADING_MS;
+
+    // Real progress, held just short of 100 until we're actually done.
+    let target = (settled / total) * 100;
+    if (!ready && !timedOut) target = Math.min(target, 99);
+    else target = 100;
+
+    // Ease toward the target, but always creep so it never looks frozen.
+    shown += Math.max((target - shown) * 0.1, target > shown ? 0.4 : 0);
+    if (shown > target) shown = target;
+
+    counter.textContent = String(Math.max(1, Math.round(shown)));
+
+    if ((ready || timedOut) && shown >= 99.5) dismiss();
+    else requestAnimationFrame(tick);
+  }
+
+  requestAnimationFrame(tick);
+}
+
+/* ------------------------------------------------------------------
+   External links
+------------------------------------------------------------------- */
+
 function openResume() {
-  window.open('https://drive.google.com/file/d/1jVhWe34kawkJr_Kx6P_C8qhsTazEddk6/view?usp=sharing', '_blank');
+  window.open('https://drive.google.com/file/d/1jVhWe34kawkJr_Kx6P_C8qhsTazEddk6/view?usp=sharing', '_blank', 'noopener');
 }
 
 function openShiftCreator() {
-  window.open('https://shiftcreator.space', '_blank');
-}
-
-function openProMo() {
-  window.open('https://www.instagram.com/product.motion?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', '_blank');
-}
-
-function openATD() {
-  window.open('https://alphathetadeltaumich.org/', '_blank');
+  window.open('https://shiftcreator.space', '_blank', 'noopener');
 }
 
 function openAGS() {
-  window.open('https://www.agslogistics.com/', '_blank');
+  window.open('https://www.agslogistics.com/', '_blank', 'noopener');
 }
 
 function openCSS() {
-  window.open('https://lsa.umich.edu/social-solutions', '_blank');
+  window.open('https://lsa.umich.edu/social-solutions', '_blank', 'noopener');
 }
 
-function openShiftBrand(){
-  window.open('https://drive.google.com/file/d/1V2kt3Fl0RQTvlNComZTrbUXEcsJ1aRbt/view?usp=sharing', '_blank');
+function openShiftBrand() {
+  window.open('https://drive.google.com/file/d/1V2kt3Fl0RQTvlNComZTrbUXEcsJ1aRbt/view?usp=sharing', '_blank', 'noopener');
 }
 
-function openMedium(){
-  window.open('https://medium.com/@siyuge', '_blank');
+function openMedium() {
+  window.open('https://medium.com/@siyuge', '_blank', 'noopener');
 }
 
-// Index panel functionality
+/* ------------------------------------------------------------------
+   Index panel
+------------------------------------------------------------------- */
+
 const toggleIndexPanel = () => {
-  const panel = document.getElementById('indexPanel');
-  panel.classList.toggle('open');
+  document.getElementById('indexPanel').classList.toggle('open');
 };
 
 const scrollToProject = (id) => {
   const element = document.getElementById(id);
   if (element) {
-    element.scrollIntoView({
-      behavior: 'smooth'
-    });
+    element.scrollIntoView({ behavior: 'smooth' });
     toggleIndexPanel();
   }
 };
 
-// SVG Animation Functions
-const svg = {
-  createDrawable: function(selector) {
-    const elements = document.querySelectorAll(selector);
-    return Array.from(elements).map(el => {
-      return new Proxy(el, {
-        set(target, prop, value) {
-          if (prop === 'draw') {
-            const [start, end] = value.split(' ').map(Number);
-            const length = target.getTotalLength();
-            const startLength = length * start;
-            const endLength = length * end;
-            const dashLength = endLength - startLength;
-            
-            target.style.strokeDasharray = dashLength + ' ' + length;
-            target.style.strokeDashoffset = length - endLength;
-          } else {
-            target[prop] = value;
-          }
-          return true;
-        },
-        get(target, prop) {
-          return target[prop];
-        }
-      });
-    });
-  }
-};
+/* ------------------------------------------------------------------
+   "MY WORK" line-drawing animation
+------------------------------------------------------------------- */
 
 let currentAnimation = null;
 
 function animateSVG() {
-  const [drawable] = svg.createDrawable('.animated-line');
-  
-  drawable.draw = '0 0';
-  
-  if (currentAnimation) {
-    cancelAnimationFrame(currentAnimation);
-  }
-  
-  let progress = 0;
-  const duration = 5000;
-  const startTime = Date.now();
-  
-  function animate() {
-    const elapsed = Date.now() - startTime;
-    progress = Math.min(elapsed / duration, 1);
-    
-    const eased = progress < 0.5 
-      ? 2 * progress * progress 
-      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-    
-    drawable.draw = `0 ${eased}`;
-    
-    if (progress < 1) {
-      currentAnimation = requestAnimationFrame(animate);
-    }
-  }
-  
-  animate();
-}
+  const source = document.querySelector('.background-line');
+  const line = document.querySelector('.animated-line');
+  if (!source || !line) return;
 
-// DOMContentLoaded - KEEP ONLY INITIALIZATION CODE HERE
-document.addEventListener('DOMContentLoaded', () => {
-  initializeLoading();
-  
-  const heroLottieElement = document.querySelector('.services-hero-lottie');
-  const heroAnimation = lottie.loadAnimation({
-    container: heroLottieElement,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json'
-  });
+  // The two paths are identical; copy the geometry instead of shipping it twice.
+  if (!line.getAttribute('d')) line.setAttribute('d', source.getAttribute('d'));
 
-  // Header 3D effect
-  const header = document.querySelector('h1');
-  const headerContainer = document.querySelector('.header-container');
-  let rect = headerContainer.getBoundingClientRect();
-
-  headerContainer.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const percentX = (mouseX - centerX) / centerX;
-    const percentY = (mouseY - centerY) / centerY;
-    const twistX = percentY * 20;
-    const twistY = percentX * 20;
-    header.style.transform = `rotateX(${-twistX}deg) rotateY(${twistY}deg)`;
-  });
-
-  headerContainer.addEventListener('mouseleave', () => {
-    header.style.transform = 'none';
-  });
-
-  window.addEventListener('resize', () => {
-    rect = headerContainer.getBoundingClientRect();
-  });
-
-  // Custom cursor
-  const dot = document.getElementById('dot');
-  document.addEventListener('mousemove', (e) => {
-    dot.style.left = `${e.clientX}px`;
-    dot.style.top = `${e.clientY}px`;
-  });
-
-  // Intersection Observer for SVG animation trigger
-  const observerOptions = {
-    threshold: 0.5,
-    rootMargin: '0px 0px -100px 0px'
+  const length = line.getTotalLength();
+  const draw = (end) => {
+    line.style.strokeDasharray = (length * end) + ' ' + length;
+    line.style.strokeDashoffset = '0';
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.target.classList.contains('my-work-svg')) {
-        animateSVG();
-      }
+  draw(0);
+
+  if (currentAnimation) cancelAnimationFrame(currentAnimation);
+
+  const duration = 5000;
+  const startTime = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = progress < 0.5
+      ? 2 * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+    draw(eased);
+
+    if (progress < 1) currentAnimation = requestAnimationFrame(step);
+  }
+
+  currentAnimation = requestAnimationFrame(step);
+}
+
+/* ------------------------------------------------------------------
+   Decorative Lottie animations (optional — never block the page)
+------------------------------------------------------------------- */
+
+function loadLottie(selector, path, stroke) {
+  if (typeof lottie === 'undefined') return;
+  const container = document.querySelector(selector);
+  if (!container) return;
+
+  try {
+    const animation = lottie.loadAnimation({
+      container, renderer: 'svg', loop: true, autoplay: true, path,
     });
-  }, observerOptions);
 
-  // Modify the color of stars after animation loads
-  heroAnimation.addEventListener('DOMLoaded', () => {
-    const svgElement = heroLottieElement.querySelector('svg');
-    if (svgElement) {
-      const paths = svgElement.querySelectorAll('path');
-      paths.forEach(path => {
-        path.setAttribute('stroke', '#f3a5a5');
-        
-        if (path.getAttribute('fill')) {
-          path.setAttribute('fill', '#f3a5a5');
-        }
+    animation.addEventListener('DOMLoaded', () => {
+      const svgElement = container.querySelector('svg');
+      if (!svgElement) return;
+      svgElement.querySelectorAll('path').forEach(p => {
+        p.setAttribute('stroke', stroke);
+        if (p.getAttribute('fill')) p.setAttribute('fill', stroke);
+      });
+    });
+  } catch (e) {
+    /* decorative only — a CDN failure must not take the page down */
+  }
+}
+
+/* ------------------------------------------------------------------
+   Init
+------------------------------------------------------------------- */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeLoading();
+
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reducedMotion) {
+    loadLottie('.services-hero-lottie',
+      'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63b6fa2b52a5b1508ff0c52f_big%20purple%20stars2.json',
+      '#f3a5a5');
+    loadLottie('.services-arrow-lottie',
+      'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json',
+      '#f3a5a5');
+  }
+
+  // Header 3D tilt + custom cursor — pointer devices only.
+  if (finePointer) {
+    const header = document.querySelector('h1');
+    const headerContainer = document.querySelector('.header-container');
+
+    if (header && headerContainer) {
+      headerContainer.addEventListener('mousemove', (e) => {
+        // Read the rect per-move so scrolling and resizing can't desync it.
+        const rect = headerContainer.getBoundingClientRect();
+        const percentX = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+        const percentY = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+        header.style.transform = `rotateX(${-percentY * 20}deg) rotateY(${percentX * 20}deg)`;
+      });
+
+      headerContainer.addEventListener('mouseleave', () => {
+        header.style.transform = 'none';
       });
     }
-  });
 
-  const arrowElement = document.querySelector('.services-arrow-lottie');
-  const animation = lottie.loadAnimation({
-    container: arrowElement,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'https://cdn.prod.website-files.com/6285e77eaf03d3b5e63ee110/63909085c2a607e8ca242ced_arrow%20purple.json'
-  });
-
-  animation.addEventListener('DOMLoaded', () => {
-    const svgElement = arrowElement.querySelector('svg');
-    if (svgElement) {
-      const paths = svgElement.querySelectorAll('path');
-      paths.forEach(path => {
-        path.setAttribute('stroke', '#f3a5a5');
+    const dot = document.getElementById('dot');
+    if (dot) {
+      document.addEventListener('mousemove', (e) => {
+        dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+        dot.classList.add('active');
       });
     }
-  });
+  }
 
+  // Draw the "MY WORK" line when it scrolls into view.
   const svgContainer = document.querySelector('.my-work-svg');
-  if (svgContainer) {
+  if (svgContainer && !reducedMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) animateSVG();
+      });
+    }, { threshold: 0.5, rootMargin: '0px 0px -100px 0px' });
+
     observer.observe(svgContainer);
   }
 });
