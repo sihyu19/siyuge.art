@@ -749,12 +749,12 @@ html:not(.js-loading) .banner-container {
   }
 
   .project-images-grid {
-    column-count: 3;
-    column-gap: 10px;
+    column-count: 4;
+    column-gap: 8px;
   }
 
   .project-images-grid img {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     border-radius: 3px;
   }
 
@@ -797,13 +797,35 @@ html:not(.js-loading) .banner-container {
 
 /* ==================================================================
    Responsive — narrow phones (<= 560px)
-   Two columns; three turns a 375px screen into 75px postage stamps.
+
+   Four columns is a deliberate choice: the grid reads as a contact sheet you
+   tap into via the lightbox, not as images you read in place. It does mean
+   ~79px thumbnails on a 375px screen, so everything below is about clawing
+   back horizontal space — tighter page padding and gaps buy ~5px per image,
+   which is about 7% and worth having.
+
+   To go back to larger images, change column-count below (and in the 768px
+   block above) to 3. Measured on a 375px screen: 4 columns = 79px images and
+   ~10 screens of scroll; 3 columns = 102px images and ~11 screens.
    ================================================================== */
 
 @media (max-width: 560px) {
+  body {
+    padding: 16px;
+  }
+
+  .projects-container {
+    padding: 0 2px;
+  }
+
   .project-images-grid {
-    column-count: 2;
-    column-gap: 10px;
+    column-count: 4;
+    column-gap: 6px;
+  }
+
+  .project-images-grid img {
+    margin-bottom: 6px;
+    border-radius: 2px;
   }
 
   .scrolling-text {
