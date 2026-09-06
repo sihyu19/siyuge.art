@@ -69,7 +69,12 @@ h1 {
 .blob-clip {
   position: absolute;
   inset: 0;
-  overflow: clip;
+  /* Clip sideways ONLY. `overflow: clip` on both axes cut the blur off at a
+     hard horizontal line at 100vh, because this box is viewport-height.
+     `clip` is what makes the split legal: with `hidden`, one axis hidden
+     forces the other to `auto`, which would re-create a scroll container. */
+  overflow-x: clip;
+  overflow-y: visible;
   pointer-events: none;
   z-index: -1;
 }

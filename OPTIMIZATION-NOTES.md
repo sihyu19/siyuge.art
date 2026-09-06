@@ -1,7 +1,8 @@
 # siyuge.art — optimization notes
 
-Everything is on the branch `optimize-loading-responsive-cleanup`, one commit.
-Desktop appearance is unchanged — I verified it pixel-for-pixel at 1440 and 1920.
+Everything is on the branch `optimize` (pushed as `optimize-loading-responsive-cleanup`
+from my side). Desktop appearance is unchanged — verified pixel-for-pixel at
+1440 and 1920.
 
 ---
 
@@ -20,16 +21,34 @@ you a load had completed that hadn't.
 
 **Now it tracks real work.** It waits on the six loader frames, `document.fonts.ready`,
 and the window `load` event, and the number reflects how many of those have
-actually settled. Two guards: a 900ms floor so it can't flash on a fast
-connection, and an 8s ceiling so a hanging request can't trap you.
+actually settled. Two guards: a 2.2s floor so it can't
+flash past on a fast connection, and an 8s ceiling so a hanging request can't
+trap you. The floor lives in `MIN_LOADING_MS` at the top of `script.js` if you
+want it longer or shorter.
+
+The number is paced against whichever constraint is actually binding — asset
+progress or the floor — so it never races ahead and then parks, and an
+asymptotic creep keeps it moving toward 95 if the network stalls. What stays
+honest is the *exit*: it leaves when the assets are genuinely done, not when a
+timer says so.
 
 I also moved the "hide the page" flag from `DOMContentLoaded` into an inline
-`<head>` script. Previously the page painted and *then* got hidden, which is a
-visible flash. There's an inline failsafe timer too — if `script.js` throws or
-never arrives, the page reveals itself anyway rather than staying blank forever.
-That mattered more than it sounds: see the Lottie note below.
+`<head>` script, **above the stylesheet links**. That position matters: a
+parser-blocking inline script placed after a pending stylesheet waits for it,
+so with the script below the Typekit link, a hanging font request stalled the
+parser before `<body>` existed — the failsafe could never fire and the page
+stayed blank for as long as the font host took to give up. Moved above, it
+reveals the page at 9s regardless. Moving it out of `DOMContentLoaded` also
+fixes a flash — the page used to paint and *then* get hidden.
 
-Measured, cold: `1 → 9 → 26 → 38 → 78 → 94 → 100`.
+Measured across four network conditions:
+
+| Condition | Counter | Screen leaves at |
+|---|---|---|
+| Warm cache | `4 12 29 45 56 68 80 91 100` | 2.5s |
+| Normal (~600ms/asset) | climbs, brief pause at 75 | 8.9s |
+| Bad (~2.5s/asset) | climbs steadily | 5.4s |
+| Network fully dead | JS never runs | 9.1s (failsafe) |
 
 ---
 
@@ -85,10 +104,13 @@ keyframes apply `scale(1.4) skew(30deg)`, and skew inflates an element's boundin
 box by roughly its own height again. A 300px blob became a 540px box on a 375px
 screen, and the browser widened the layout viewport to fit it.
 
-Fixed by wrapping it in `position: absolute; inset: 0; overflow: clip`. That
-rectangle *is* the initial containing block, so `top: 50%; left: 70%` resolve to
-exactly the same place — the blob renders identically and simply gets clipped
-now. This also removed 120–220px of sideways scroll on desktop, which I doubt
+Fixed by wrapping it in `position: absolute; inset: 0` with `overflow-x: clip`.
+That rectangle *is* the initial containing block, so `top: 50%; left: 70%`
+resolve to exactly the same place — the blob renders identically and simply gets
+clipped sideways now. Only the x axis: clipping both cut the blur off at a hard
+horizontal line at 100vh, since the wrapper is viewport-height. `clip` is what
+makes that split legal — with `hidden`, one axis hidden forces the other to
+`auto` and you get a scroll container back. This also removed 120–220px of sideways scroll on desktop, which I doubt
 you'd noticed but was there at every width below 1600.
 
 ### The other big one: images pushed off-screen on laptops
@@ -116,14 +138,22 @@ rendering is not byte-identical, so flagging it.
 
 ### Columns
 
-Four columns on a 375px phone gave **75px images**. Now:
+Four columns on a 375px phone gave **75px images** — and the page was rendering
+at 505px and scaling down, so they were effectively smaller still. Column count
+stays at 4 by preference (the grid is a contact sheet you tap into via the
+lightbox), but the viewport fix plus tighter padding and gaps takes them to
+**80px** at a true 375px.
 
-| Width | Columns |
-|---|---|
-| ≥1025px | 4 (unchanged) |
-| 769–1024px | 3 (unchanged) |
-| 561–768px | 3 |
-| ≤560px | 2 |
+| Width | Columns | Image width at that size |
+|---|---|---|
+| ≥1025px | 4 | 238–253px |
+| 769–1024px | 3 | ~230px |
+| 561–768px | 4 | 127–174px |
+| ≤560px | 4 | 67–94px |
+
+Measured trade if you want bigger images: 3 columns gives 102px on a 375px
+screen and costs about one extra screen of scroll (11 vs 10). Change
+`column-count` in the `≤560px` block and the `768px` block above it.
 
 ### Also fixed
 

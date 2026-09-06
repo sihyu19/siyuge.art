@@ -16,6 +16,24 @@
   <meta property="og:url" content="https://www.siyuge.art/">
   <meta name="twitter:card" content="summary_large_image">
 
+  <!--
+    Flag the loading state before the body paints, so content never flashes
+    in and then hides. The timer is a failsafe: if script.js throws or never
+    arrives, the page reveals itself anyway rather than staying blank.
+
+    This MUST stay above the stylesheet links. A parser-blocking inline script
+    that follows a pending stylesheet waits for that stylesheet — so with this
+    below the Typekit link, a hanging font request blocked the parser before
+    <body> existed, and the failsafe could never fire. The page stayed blank
+    for as long as the font host took to time out.
+  -->
+  <script>
+    document.documentElement.classList.add('js-loading');
+    setTimeout(function () {
+      document.documentElement.classList.remove('js-loading');
+    }, 9000);
+  </script>
+
   <!-- Start the handshake with the image hosts while the CSS is still parsing -->
   <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -26,18 +44,6 @@
   <!-- CSS -->
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/lightbox.css">
-
-  <!--
-    Flag the loading state before the body paints, so content never flashes
-    in and then hides. The timer is a failsafe: if script.js throws or never
-    arrives, the page reveals itself anyway rather than staying blank.
-  -->
-  <script>
-    document.documentElement.classList.add('js-loading');
-    setTimeout(function () {
-      document.documentElement.classList.remove('js-loading');
-    }, 9000);
-  </script>
 
   <!-- Lottie (decorative only) -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>

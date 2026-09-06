@@ -14,7 +14,7 @@ const loadingImages = [
   'https://i.postimg.cc/XNx4F6N4/2.png',
 ];
 
-const MIN_LOADING_MS = 900;   // don't let it flash by
+const MIN_LOADING_MS = 2200;  // how long the screen shows even on a warm cache
 const MAX_LOADING_MS = 8000;  // hard ceiling if something never resolves
 
 function preloadImage(src) {
@@ -78,13 +78,27 @@ function initializeLoading() {
     const ready = settled === total && elapsed >= MIN_LOADING_MS;
     const timedOut = elapsed >= MAX_LOADING_MS;
 
-    // Real progress, held just short of 100 until we're actually done.
-    let target = (settled / total) * 100;
+    // Two things gate the exit: assets finishing, and the minimum display time
+    // elapsing. Pace against whichever is further behind, so on a warm cache
+    // the number climbs over MIN_LOADING_MS instead of racing to 99 and then
+    // sitting there waiting out the timer.
+    const gated = Math.min(settled / total, elapsed / MIN_LOADING_MS);
+
+    // `gated` alone plateaus: only 8 things are being tracked, and the last
+    // two (webfonts, window load) can lag the other six by seconds, which
+    // parked the number at 75 while the page was clearly still working.
+    // This curve keeps it creeping toward 95 and never quite arriving, so
+    // there is always motion without ever claiming to be finished.
+    const creep = 0.95 * (1 - Math.exp(-elapsed / MIN_LOADING_MS));
+
+    let target = Math.max(gated, creep) * 100;
     if (!ready && !timedOut) target = Math.min(target, 99);
     else target = 100;
 
-    // Ease toward the target, but always creep so it never looks frozen.
-    shown += Math.max((target - shown) * 0.1, target > shown ? 0.4 : 0);
+    // Snap harder once we are actually done, so the last stretch to 100 is
+    // not itself a wait.
+    const rate = (ready || timedOut) ? 0.28 : 0.1;
+    shown += Math.max((target - shown) * rate, target > shown ? 0.4 : 0);
     if (shown > target) shown = target;
 
     counter.textContent = String(Math.max(1, Math.round(shown)));
