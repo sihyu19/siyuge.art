@@ -316,13 +316,19 @@ nav {
   column-gap: 16px;
 }
 
-.project-images-grid img {
+.project-images-grid img,
+.project-images-grid video {
   width: 100%;
   height: auto;
   border-radius: 4px;
   display: block;
   margin-bottom: 16px;
   break-inside: avoid;
+}
+
+/* The page sets `cursor: none`, so a video needs its zoom affordance back. */
+.project-images-grid video {
+  cursor: zoom-in;
 }
 
 /* ==================================================================
@@ -758,7 +764,8 @@ html:not(.js-loading) .banner-container {
     column-gap: 8px;
   }
 
-  .project-images-grid img {
+  .project-images-grid img,
+  .project-images-grid video {
     margin-bottom: 8px;
     border-radius: 3px;
   }
@@ -828,7 +835,8 @@ html:not(.js-loading) .banner-container {
     column-gap: 6px;
   }
 
-  .project-images-grid img {
+  .project-images-grid img,
+  .project-images-grid video {
     margin-bottom: 6px;
     border-radius: 2px;
   }

@@ -16,7 +16,8 @@
   align-items: center;
 }
 
-.lightbox img {
+.lightbox img,
+.lightbox video {
   max-width: 90%;
   max-height: 90vh;
   object-fit: contain;
@@ -46,13 +47,19 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.lightbox video {
+  cursor: default;
+}
+
 .project-images-grid img,
+.project-images-grid video,
 .single-project-image img {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cline x1='15' y1='15' x2='20' y2='20'/%3E%3C/svg%3E") 10 10, zoom-in;
   transition: transform 0.2s ease;
 }
 
 .project-images-grid img:hover,
+.project-images-grid video:hover,
 .single-project-image img:hover {
   transform: scale(1.02);
 }

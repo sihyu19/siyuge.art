@@ -194,9 +194,20 @@ Worst offenders:
 ### Run this
 
 ```bash
+pip3 install pillow
 brew install ffmpeg
-./tools/optimize-media.sh
+python3 tools/optimize-media.py
 ```
+
+Measured on your actual assets: **344 MB → 9 MB in 2m18s, 47 files, 0 failures.**
+
+Pillow does the WebP encoding rather than ffmpeg or cwebp, which is worth
+knowing if you ever change this. Homebrew's ffmpeg is not built with libwebp
+(`Unknown encoder 'libwebp'`), and its `cwebp` binary links against libtiff,
+which breaks the moment `brew cleanup` removes a version it points at
+(`Library not loaded: libtiff.6.dylib`). Pillow bundles its own codecs and has
+neither failure mode. ffmpeg is still used for the GIF→MP4 step, where it
+works fine.
 
 It converts everything and moves originals to `assets-original/` (gitignored —
 delete once you're happy). Measured results on your actual files:
@@ -233,13 +244,15 @@ is visually indistinguishable here and ~95% smaller.
 become `<video>` elements:
 
 ```html
-<video autoplay muted loop playsinline
+<video autoplay muted loop playsinline preload="metadata"
        poster="assets/vinyl-poster.webp"
-       width="800" height="800">
-  <source src="assets/vinyl.webm" type="video/webm">
+       width="800" height="800" aria-label="Vinyl record animation">
   <source src="assets/vinyl.mp4" type="video/mp4">
 </video>
 ```
+
+MP4 only — H.264 plays everywhere since ~2011, so WebM would save about 1 MB
+against an already-98% reduction while doubling encode time.
 
 `muted` and `playsinline` are both required or iOS won't autoplay. Then add to
 `styles.css` next to the image rules:
