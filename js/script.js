@@ -122,12 +122,8 @@ function openShiftCreator() {
   window.open('https://shiftcreator.space', '_blank', 'noopener');
 }
 
-function openAGS() {
-  window.open('https://www.agslogistics.com/', '_blank', 'noopener');
-}
-
-function openCSS() {
-  window.open('https://lsa.umich.edu/social-solutions', '_blank', 'noopener');
+function openStory() {
+  window.open('https://story.inc/', '_blank', 'noopener');
 }
 
 function openShiftBrand() {
